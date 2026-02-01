@@ -1,12 +1,17 @@
+/* =========================== */
+/*       STYLE.CSS UPDATED       */
+/* =========================== */
+
 body {
     margin: 0;
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    color: #222;
+    color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
+    background-color: #000;
 }
 
-/* Navigation bar */
+/* NAVIGATION BAR */
 nav {
     position: absolute;
     top: 0;
@@ -15,6 +20,7 @@ nav {
     padding: 0.6rem 0;
     text-align: center;
     z-index: 10;
+    animation: slideDown 1s ease;
 }
 
 nav a {
@@ -22,24 +28,28 @@ nav a {
     text-decoration: none;
     margin: 0 1rem;
     font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    color: #f0d35c;
+    transform: scale(1.1);
 }
 
-/* Hero landing screen */
+/* HERO LANDING SCREEN */
 .hero {
     height: 100vh;
-    background-image: url("Images/Howrah_Birdseye.jpg");
+    background-image: url("./Images/Howrah_Birdseye.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 
 /* Dark overlay */
@@ -48,28 +58,44 @@ nav a:hover {
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.45);
+    animation: fadeOverlay 2s ease forwards;
 }
 
 /* Hero title */
 .hero-title {
     position: relative;
     color: white;
-    font-size: 3.5rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 3px;
     opacity: 0;
-    animation: fadeIn 2.2s ease forwards;
+    transform: translateY(20px);
+    animation: fadeInUp 2s ease forwards 0.5s;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Hero subtitle */
+.hero-subtitle {
+    position: relative;
+    color: #f0f0f0;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 2s ease forwards 1.2s;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOverlay {
+    from { background-color: rgba(0, 0, 0, 0); }
+    to { background-color: rgba(0, 0, 0, 0.45); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
