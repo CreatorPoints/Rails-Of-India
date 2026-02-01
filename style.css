@@ -85,13 +85,20 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
+
+    /* Fixed position effect for scroll */
     background-image: url("./Images/VandeBharat.jpg"); /* second image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    /* Initial blur */
+    filter: blur(8px);
+    transition: filter 0.8s ease;
+
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease, filter 0.8s ease;
 }
 
 .project-info.visible {
