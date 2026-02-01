@@ -2,7 +2,6 @@
 /*       FIREBASE AUTH JS      */
 /* =========================== */
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDydOzvB5GwvSNAEcfyAFaD167ftlwW2U8",
   authDomain: "rails-of-india-27a93.firebaseapp.com",
@@ -17,101 +16,101 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Google Sign-in
+// ================= GOOGLE SIGN-IN =================
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 const googleBtn = document.getElementById("googleSignIn");
 
-if(googleBtn){
+if (googleBtn) {
   googleBtn.addEventListener("click", () => {
     auth.signInWithPopup(googleProvider)
       .then(result => {
-        const user = result.user;
-        alert(`Welcome, ${user.displayName}!`);
-        console.log(user);
+        console.log("Google user:", result.user);
+        alert(`Welcome, ${result.user.displayName}!`);
       })
       .catch(error => {
-        console.error(error);
+        console.error("Google sign-in error:", error);
         alert(error.message);
       });
   });
 }
 
-// Email/Password Sign-in
+// ================= EMAIL FORM TOGGLE =================
+const emailToggleBtn = document.getElementById("emailSignInBtn");
+const emailForm = document.getElementById("emailForm");
+
+if (emailToggleBtn) {
+  emailToggleBtn.addEventListener("click", () => {
+    emailForm.style.display =
+      emailForm.style.display === "none" ? "block" : "none";
+  });
+}
+
+// ================= EMAIL SIGN-IN =================
 const emailSignInBtn = document.getElementById("emailSignIn");
-if(emailSignInBtn){
+
+if (emailSignInBtn) {
   emailSignInBtn.addEventListener("click", () => {
     const email = document.getElementById("emailInput").value;
     const password = document.getElementById("passwordInput").value;
 
     auth.signInWithEmailAndPassword(email, password)
       .then(userCredential => {
-        const user = userCredential.user;
-        alert(`Welcome, ${user.email}!`);
-        console.log(user);
+        console.log("Email login:", userCredential.user);
+        alert(`Welcome, ${userCredential.user.email}`);
       })
       .catch(error => {
-        console.error(error);
+        console.error("Email sign-in error:", error);
         alert(error.message);
       });
   });
 }
 
-// Email/Password Sign-up
+// ================= EMAIL SIGN-UP =================
 const emailSignUpBtn = document.getElementById("emailSignUp");
-if(emailSignUpBtn){
+
+if (emailSignUpBtn) {
   emailSignUpBtn.addEventListener("click", () => {
     const email = document.getElementById("emailInput").value;
     const password = document.getElementById("passwordInput").value;
 
     auth.createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
-        const user = userCredential.user;
-        alert(`Account created: ${user.email}`);
-        console.log(user);
+        console.log("Account created:", userCredential.user);
+        alert(`Account created for ${userCredential.user.email}`);
       })
       .catch(error => {
-        console.error(error);
+        console.error("Sign-up error:", error);
         alert(error.message);
       });
   });
 }
 
-// Logout
+// ================= LOGOUT =================
 const logoutBtn = document.getElementById("logoutBtn");
-if(logoutBtn){
+
+if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
     auth.signOut()
-      .then(() => alert("Logged out!"))
+      .then(() => alert("Logged out successfully"))
       .catch(error => console.error(error));
   });
 }
 
-// Monitor Auth State & Update UI
+// ================= AUTH STATE OBSERVER =================
 auth.onAuthStateChanged(user => {
-  const googleBtn = document.getElementById("googleSignIn");
-  const emailSignInBtn = document.getElementById("emailSignInBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  if(user){
-    // User is signed in
+  if (user) {
     console.log("User signed in:", user);
 
-    if(googleBtn) googleBtn.style.display = "none";
-    if(emailSignInBtn) emailSignInBtn.style.display = "none";
-    if(logoutBtn) logoutBtn.style.display = "inline-block";
-
-    // Optional: show user name/avatar somewhere
-    // document.getElementById("navbarUser").innerText = user.displayName || user.email;
+    if (googleBtn) googleBtn.style.display = "none";
+    if (emailToggleBtn) emailToggleBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+    if (emailForm) emailForm.style.display = "none";
 
   } else {
-    // No user signed in
     console.log("No user signed in");
 
-    if(googleBtn) googleBtn.style.display = "inline-block";
-    if(emailSignInBtn) emailSignInBtn.style.display = "inline-block";
-    if(logoutBtn) logoutBtn.style.display = "none";
-
-    // Optional: hide user info
-    // document.getElementById("navbarUser").innerText = "";
+    if (googleBtn) googleBtn.style.display = "inline-block";
+    if (emailToggleBtn) emailToggleBtn.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "none";
   }
 });

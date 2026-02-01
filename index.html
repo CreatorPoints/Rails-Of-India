@@ -14,12 +14,19 @@
     <a href="community.html">Community</a>
     <a href="mods.html">Mods Repository</a>
     <a href="contribute.html">Contributions</a>
-    <!-- Navbar login buttons -->
-    <!-- Navbar login buttons -->
-    <button id="googleSignIn" class="auth-btn auth-btn-google">Sign in with Google</button>
-    <button id="emailSignInBtn" class="auth-btn">Sign in with Email</button>
-    <button id="logoutBtn" class="auth-btn auth-btn-logout" style="display:none;">Logout</button>
 
+    <!-- Auth buttons -->
+    <button id="googleSignIn" class="auth-btn auth-btn-google">
+        Sign in with Google
+    </button>
+
+    <button id="emailSignInBtn" class="auth-btn">
+        Sign in with Email
+    </button>
+
+    <button id="logoutBtn" class="auth-btn auth-btn-logout" style="display:none;">
+        Logout
+    </button>
 </nav>
 
 <div class="hero">
@@ -30,20 +37,29 @@
     <div class="info-content">
         <h2>Featuring a 1:1 Real map to Game map</h2>
         <p>
-            Every route, every stations, every trees, all are exactly placed in the game. Featuring more that 100+ routes (And even more!).
+            Every route, every station, every tree — all accurately placed.
+            Featuring 100+ routes and growing.
         </p>
     </div>
 </section>
-<!-- Hidden email form -->
-<div id="emailForm" style="display:none;">
-  <input type="email" id="emailInput" placeholder="Email">
-  <input type="password" id="passwordInput" placeholder="Password">
-  <button id="emailSignIn">Sign in</button>
-  <button id="emailSignUp">Sign up</button>
+
+<!-- Email auth form -->
+<div id="emailForm" style="display:none; text-align:center; margin:2rem;">
+    <input type="email" id="emailInput" placeholder="Email"><br><br>
+    <input type="password" id="passwordInput" placeholder="Password"><br><br>
+    <button id="emailSignIn">Sign in</button>
+    <button id="emailSignUp">Sign up</button>
 </div>
+
+<!-- Your normal JS -->
 <script src="script.js"></script>
+
+<!-- Firebase COMPAT SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.30.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.30.0/firebase-auth-compat.js"></script>
-<script type="module" src="fireauth.js"></script>
+
+<!-- Firebase Auth Logic (NOT MODULE) -->
+<script src="fireauth.js"></script>
+
 </body>
 </html>
