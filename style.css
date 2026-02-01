@@ -1,43 +1,20 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    background-color: #f4f6f7;
     color: #222;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-header {
-    background-image: linear-gradient(
-        rgba(15, 42, 68, 0.75),
-        rgba(15, 42, 68, 0.75)
-    ),
-    url("Images/Howrah_Birdseye.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    color: white;
-    padding: 3rem 1rem;
-    text-align: center;
-}
-
-
-header h1 {
-    margin: 0;
-    font-size: 2.2rem;
-}
-
-header p {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
+/* Navigation bar */
 nav {
-    background-color: #163a5f;
-    padding: 0.5rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(22, 58, 95, 0.85);
+    padding: 0.6rem 0;
     text-align: center;
+    z-index: 10;
 }
 
 nav a {
@@ -51,31 +28,48 @@ nav a:hover {
     text-decoration: underline;
 }
 
-main {
-    max-width: 900px;
-    margin: auto;
-    padding: 2rem 1rem;
+/* Hero landing screen */
+.hero {
+    height: 100vh;
+    background-image: url("Images/Howrah_Birdseye.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-section {
-    margin-bottom: 2.5rem;
+/* Dark overlay */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
 }
 
-section h2 {
-    border-bottom: 2px solid #163a5f;
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
-    color: #163a5f;
-}
-
-ul {
-    padding-left: 1.2rem;
-}
-
-footer {
-    background-color: #0f2a44;
+/* Hero title */
+.hero-title {
+    position: relative;
     color: white;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+
+    opacity: 0;
+    animation: fadeIn 2.2s ease forwards;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
