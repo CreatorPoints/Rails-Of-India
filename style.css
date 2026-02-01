@@ -45,20 +45,15 @@ nav a:hover {
     background-repeat: no-repeat;
 
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    transition: filter 1s ease, background-image 1s ease;
 }
 
-/* Dark overlay */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.45);
-    animation: fadeOverlay 2s ease forwards;
+.hero.blur {
+    filter: blur(8px);
 }
 
 /* Hero title */
@@ -73,7 +68,7 @@ nav a:hover {
     animation: fadeInUp 2s ease forwards 0.5s;
 }
 
-/* Hero subtitle */
+/* HERO SUBTITLE (optional) */
 .hero-subtitle {
     position: relative;
     color: #f0f0f0;
@@ -82,6 +77,35 @@ nav a:hover {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 2s ease forwards 1.2s;
+}
+
+/* PROJECT INFO SECTION */
+.project-info {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+    background-image: url("./Images/Next_Image.jpg"); /* second image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.project-info.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info-content {
+    background-color: rgba(0,0,0,0.5);
+    padding: 2rem;
+    border-radius: 12px;
+    color: #fff;
+    max-width: 800px;
+    text-align: center;
 }
 
 /* ================= ANIMATIONS ================= */
