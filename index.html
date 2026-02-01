@@ -14,6 +14,10 @@
     <a href="community.html">Community</a>
     <a href="mods.html">Mods Repository</a>
     <a href="contribute.html">Contributions</a>
+    <!-- Navbar login buttons -->
+    <button id="googleSignIn">Sign in with Google</button>
+    <button id="emailSignInBtn">Sign in with Email</button>
+    <button id="logoutBtn">Logout</button>
 </nav>
 
 <div class="hero">
@@ -28,7 +32,16 @@
         </p>
     </div>
 </section>
-
+<!-- Hidden email form -->
+<div id="emailForm" style="display:none;">
+  <input type="email" id="emailInput" placeholder="Email">
+  <input type="password" id="passwordInput" placeholder="Password">
+  <button id="emailSignIn">Sign in</button>
+  <button id="emailSignUp">Sign up</button>
+</div>
 <script src="script.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.30.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.30.0/firebase-auth-compat.js"></script>
+<script src="js/firebase.js"></script>
 </body>
 </html>
