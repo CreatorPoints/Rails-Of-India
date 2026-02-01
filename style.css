@@ -7,11 +7,21 @@ body {
 }
 
 header {
-    background-color: #0f2a44;
+    background-image: linear-gradient(
+        rgba(15, 42, 68, 0.75),
+        rgba(15, 42, 68, 0.75)
+    ),
+    url("Images/Howrah_Birdseye.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     color: white;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
     text-align: center;
 }
+
 
 header h1 {
     margin: 0;
