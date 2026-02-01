@@ -130,3 +130,52 @@ nav a:hover {
     from { transform: translateY(-50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
+
+/* ================== 2026-Style Buttons ================== */
+.auth-btn {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    padding: 0.65rem 1.5rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298); /* sleek gradient */
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    backdrop-filter: blur(5px);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+    background: linear-gradient(135deg, #2a5298, #1e3c72);
+    color: #f0d35c; /* subtle glow effect on hover */
+}
+
+.auth-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+.auth-btn-google {
+    background: linear-gradient(135deg, #4285F4, #34A853);
+    color: #fff;
+}
+
+.auth-btn-google:hover {
+    background: linear-gradient(135deg, #34A853, #4285F4);
+    color: #fff;
+}
+
+.auth-btn-logout {
+    background: linear-gradient(135deg, #D32F2F, #B71C1C);
+    color: #fff;
+}
+
+.auth-btn-logout:hover {
+    background: linear-gradient(135deg, #B71C1C, #D32F2F);
+    color: #fff;
+}
