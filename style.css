@@ -88,7 +88,7 @@ nav a:hover {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 1s ease, transform 1s ease;
-    background-image: url("./Images/Next_Image.jpg"); /* second image */
+    background-image: url("./Images/VandeBharat.jpg"); /* second image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
