@@ -15,10 +15,7 @@
     <a href="mods.html">Mods Repository</a>
     <a href="contribute.html">Contributions</a>
 
-    <!-- Auth buttons -->
-    <button id="googleSignIn" class="auth-btn auth-btn-google">Google</button>
-    <button id="emailToggle" class="auth-btn">Email</button>
-    <button id="logoutBtn" class="auth-btn auth-btn-logout" style="display:none;">Logout</button>
+    <button id="login-btn" class="auth-btn auth-btn-google">Login</button>
 </nav>
 
 <div class="hero">
@@ -27,31 +24,16 @@
 
 <section class="project-info">
     <div class="info-content">
-        <h2>1:1 Real Indian Rail Network</h2>
+        <h2>1:1 Indian Rail Simulation</h2>
         <p>
-            Ultra-realistic routes, accurate stations, signals, traffic,
-            and evolving railway ecosystems — starting from locals.
+            Real routes. Real stations. Real signals.
+            Starting with locals, scaling to the entire nation.
         </p>
     </div>
 </section>
 
-<!-- EMAIL AUTH PANEL -->
-<div id="emailForm" class="email-panel" style="display:none;">
-    <input type="email" id="emailInput" placeholder="Email">
-    <input type="password" id="passwordInput" placeholder="Password">
-    <button id="emailSignIn">Sign In</button>
-    <button id="emailSignUp">Sign Up</button>
-</div>
-
-<!-- Your scroll / animation JS -->
-<script src="script.js"></script>
-
-<!-- Firebase SDKs (MUST COME FIRST) -->
-<script src="https://www.gstatic.com/firebasejs/9.30.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.30.0/firebase-auth-compat.js"></script>
-
-<!-- Firebase Auth Logic -->
-<script src="fireauth.js"></script>
+<!-- ONE module script -->
+<script type="module" src="fireauth.js"></script>
 
 </body>
 </html>

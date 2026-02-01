@@ -1,8 +1,18 @@
 /* =========================== */
-/*       FIREBASE AUTH JS      */
+/*   RAILS OF INDIA AUTH JS    */
 /* =========================== */
 
-// Firebase config
+// Firebase SDK imports (MODULAR)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+// ROI Backend Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDydOzvB5GwvSNAEcfyAFaD167ftlwW2U8",
   authDomain: "rails-of-india-27a93.firebaseapp.com",
@@ -13,71 +23,48 @@ const firebaseConfig = {
   measurementId: "G-PDPPRYL5N8"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+// Init Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-// DOM elements
-const googleBtn = document.getElementById("googleSignIn");
-const emailToggle = document.getElementById("emailToggle");
-const emailForm = document.getElementById("emailForm");
-const emailSignInBtn = document.getElementById("emailSignIn");
-const emailSignUpBtn = document.getElementById("emailSignUp");
-const logoutBtn = document.getElementById("logoutBtn");
-
-// Google Sign-In
-googleBtn.addEventListener("click", () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider)
-    .then(res => {
-      console.log("Google login:", res.user);
-    })
-    .catch(err => alert(err.message));
-});
-
-// Toggle email form
-emailToggle.addEventListener("click", () => {
-  emailForm.style.display =
-    emailForm.style.display === "none" ? "block" : "none";
-});
-
-// Email sign-in
-emailSignInBtn.addEventListener("click", () => {
-  const email = emailInput.value;
-  const pass = passwordInput.value;
-
-  auth.signInWithEmailAndPassword(email, pass)
-    .then(res => console.log("Email login:", res.user))
-    .catch(err => alert(err.message));
-});
-
-// Email sign-up
-emailSignUpBtn.addEventListener("click", () => {
-  const email = emailInput.value;
-  const pass = passwordInput.value;
-
-  auth.createUserWithEmailAndPassword(email, pass)
-    .then(res => console.log("Account created:", res.user))
-    .catch(err => alert(err.message));
-});
-
-// Logout
-logoutBtn.addEventListener("click", () => {
-  auth.signOut();
-});
+let currentUser = null;
+const loginBtn = document.getElementById("login-btn");
 
 // Auth state listener
-auth.onAuthStateChanged(user => {
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
+
   if (user) {
-    googleBtn.style.display = "none";
-    emailToggle.style.display = "none";
-    emailForm.style.display = "none";
-    logoutBtn.style.display = "inline-block";
-    console.log("Logged in as:", user.email || user.displayName);
+    console.log("Logged in:", user.uid);
+    loginBtn.textContent = user.displayName || user.email || "Logged In";
   } else {
-    googleBtn.style.display = "inline-block";
-    emailToggle.style.display = "inline-block";
-    logoutBtn.style.display = "none";
     console.log("Logged out");
+    loginBtn.textContent = "Login";
+  }
+});
+
+// Login / Logout handler
+loginBtn.addEventListener("click", () => {
+  if (currentUser) {
+    // Logout
+    signOut(auth)
+      .then(() => console.log("Signed out"))
+      .catch(err => alert(err.message));
+  } else {
+    // Login
+    signInWithPopup(auth, provider)
+      .then(result => {
+        currentUser = result.user;
+        console.log("Signed in:", currentUser.uid);
+      })
+      .catch(err => {
+        console.error(err);
+        if (err.code === "auth/popup-blocked") {
+          alert("Popup blocked. Allow popups for this site.");
+        } else {
+          alert(err.message);
+        }
+      });
   }
 });
