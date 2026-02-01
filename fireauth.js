@@ -2,17 +2,16 @@
 /*   RAILS OF INDIA AUTH JS    */
 /* =========================== */
 
-// Firebase SDK imports (MODULAR)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-// ROI Backend Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDydOzvB5GwvSNAEcfyAFaD167ftlwW2U8",
   authDomain: "rails-of-india-27a93.firebaseapp.com",
@@ -23,48 +22,47 @@ const firebaseConfig = {
   measurementId: "G-PDPPRYL5N8"
 };
 
-// Init Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 let currentUser = null;
-const loginBtn = document.getElementById("login-btn");
 
-// Auth state listener
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
+document.addEventListener("DOMContentLoaded", () => {
+  const loginBtn = document.getElementById("login-btn");
 
-  if (user) {
-    console.log("Logged in:", user.uid);
-    loginBtn.textContent = user.displayName || user.email || "Logged In";
-  } else {
-    console.log("Logged out");
-    loginBtn.textContent = "Login";
+  if (!loginBtn) {
+    console.error("Login button not found");
+    return;
   }
-});
 
-// Login / Logout handler
-loginBtn.addEventListener("click", () => {
-  if (currentUser) {
-    // Logout
-    signOut(auth)
-      .then(() => console.log("Signed out"))
-      .catch(err => alert(err.message));
-  } else {
-    // Login
-    signInWithPopup(auth, provider)
-      .then(result => {
-        currentUser = result.user;
-        console.log("Signed in:", currentUser.uid);
-      })
-      .catch(err => {
-        console.error(err);
-        if (err.code === "auth/popup-blocked") {
-          alert("Popup blocked. Allow popups for this site.");
-        } else {
-          alert(err.message);
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+
+    if (user) {
+      loginBtn.textContent = user.displayName || "Account";
+      loginBtn.classList.add("auth-btn-logout");
+    } else {
+      loginBtn.textContent = "Login";
+      loginBtn.classList.remove("auth-btn-logout");
+    }
+  });
+
+  loginBtn.addEventListener("click", async () => {
+    try {
+      if (currentUser) {
+        await signOut(auth);
+      } else {
+        try {
+          await signInWithPopup(auth, provider);
+        } catch (popupError) {
+          // GitHub Pages / popup blocked fallback
+          await signInWithRedirect(auth, provider);
         }
-      });
-  }
+      }
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  });
 });
