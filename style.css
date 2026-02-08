@@ -1,206 +1,77 @@
-/* =========================== */
-/*       STYLE.CSS UPDATED     */
-/* =========================== */
+/* ================== CINEMATIC ENHANCEMENTS ================== */
 
-body {
-    margin: 0;
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    color: #fff;
-    line-height: 1.6;
-    overflow-x: hidden;
-    background-color: #000;
-}
-
-/* ================= NAVIGATION BAR ================= */
-nav {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    background-color: rgba(22, 58, 95, 0.85);
-    padding: 0.6rem 0;
-    text-align: center;
-    z-index: 20;
-    animation: slideDown 1s ease;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1rem;
-    font-size: 0.95rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-nav a:hover {
-    color: #f0d35c;
-    transform: scale(1.1);
-}
-
-/* ================= HERO LANDING SCREEN ================= */
+/* Hero cinematic depth */
 .hero {
-    height: 100vh;
-    background-image: url("./Images/Howrah_Birdseye.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    perspective: 1000px;
     overflow: hidden;
 }
 
-/* DARK OVERLAY FOR READABILITY */
-.hero::before {
+.hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 1;
-}
-
-/* Keep hero content above overlay */
-.hero > * {
-    position: relative;
+    background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.08), transparent 70%);
+    pointer-events: none;
     z-index: 2;
 }
 
-/* Blur state (if used via JS) */
-.hero.blur {
-    filter: blur(8px);
-}
-
-/* Hero title */
-.hero-title {
-    color: white;
-    font-size: 4rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 2s ease forwards 0.5s;
-
-    /* Text clarity boost */
-    text-shadow:
-        0 3px 10px rgba(0,0,0,0.85),
-        0 0 25px rgba(0,0,0,0.6);
-}
-
-/* Hero subtitle */
-.hero-subtitle {
-    color: #f0f0f0;
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 2s ease forwards 1.2s;
-
-    text-shadow:
-        0 2px 8px rgba(0,0,0,0.8);
-}
-
-/* ================= PROJECT INFO SECTION ================= */
-.project-info {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-    background-image: url("./Images/VandeBharat.jpg");
+/* Hero parallax effect */
+.hero-bg-parallax {
+    position: absolute;
+    inset: 0;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
+    transform: translateZ(0);
+    transition: transform 0.6s ease-out;
+    will-change: transform;
 }
 
-/* Dark overlay */
-.project-info::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
+/* Hero title cinematic animation */
+.hero-title {
+    font-size: 4rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    animation: cinematicFadeIn 2s ease forwards 0.5s;
+    text-shadow:
+        0 4px 15px rgba(0,0,0,0.9),
+        0 0 35px rgba(0,0,0,0.7),
+        0 0 80px rgba(255,215,0,0.2);
 }
 
+/* Cinematic fade-in animation */
+@keyframes cinematicFadeIn {
+    0% { opacity: 0; transform: scale(0.85) translateY(30px); }
+    50% { opacity: 0.6; transform: scale(1.05) translateY(-10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Project Info cinematic scroll */
 .project-info.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    transition: opacity 1.5s ease, transform 1.5s ease;
 }
 
-.info-content {
-    background-color: rgba(0,0,0,0.55);
-    padding: 2rem;
-    border-radius: 14px;
-    color: #fff;
-    max-width: 800px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-}
-
-/* ================= ANIMATIONS ================= */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-/* ================== 2026-STYLE BUTTONS ================== */
+/* Cinematic glow for auth buttons */
 .auth-btn {
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    font-size: 1rem;
-    padding: 0.65rem 1.5rem;
-    margin: 0 0.5rem;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.35);
-    backdrop-filter: blur(6px);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    box-shadow: 0 6px 25px rgba(255, 200, 60, 0.5);
 }
 
 .auth-btn:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.45);
-    background: linear-gradient(135deg, #2a5298, #1e3c72);
-    color: #f0d35c;
+    box-shadow: 0 12px 40px rgba(255, 215, 0, 0.7);
 }
 
-.auth-btn:active {
-    transform: translateY(0) scale(0.97);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+/* Smooth scroll for cinematic flow */
+html {
+    scroll-behavior: smooth;
 }
 
-/* Google variant */
-.auth-btn-google {
-    background: linear-gradient(135deg, #4285F4, #34A853);
+/* Optional: subtle background pulse for hero */
+@keyframes heroPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.97; }
 }
 
-.auth-btn-google:hover {
-    background: linear-gradient(135deg, #34A853, #4285F4);
-    color: #fff;
-}
-
-/* Logout variant */
-.auth-btn-logout {
-    background: linear-gradient(135deg, #D32F2F, #B71C1C);
-}
-
-.auth-btn-logout:hover {
-    background: linear-gradient(135deg, #B71C1C, #D32F2F);
-    color: #fff;
+.hero > * {
+    animation: heroPulse 20s ease-in-out infinite alternate;
 }
