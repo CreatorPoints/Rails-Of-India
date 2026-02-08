@@ -1,118 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Community • Rails of India</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Rails of India Community</title>
+    <link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet" href="style.css">
+    <!-- Auto-redirect after 5 seconds -->
+    <script>
+        setTimeout(() => {
+            window.location.href = "https://discord.gg/y42B8k2eAT";
+        }, 5000);
+    </script>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav>
-  <a href="index.html">Home</a>
-  <a href="download.html">Download</a>
-  <a href="community.html" class="active">Community</a>
-  <a href="mods.html">Mods</a>
-  <a href="contribute.html">Contribute</a>
+    <!-- NAV BAR -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="community.html">Community</a>
+    </nav>
 
-  <button id="login-btn" class="auth-btn auth-btn-google">Login</button>
-</nav>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div style="text-align:center;">
+            <h1 class="hero-title">🚆 Rails of India</h1>
+            <p class="hero-subtitle">
+                Join the official Discord community<br>
+                Routes • Screenshots • Discussions • Updates
+            </p>
 
-<!-- PAGE HEADER -->
-<header class="community-hero">
-  <h1>Rails of India Community</h1>
-  <p>Discuss routes, trains, realism, mods, and ideas.</p>
-</header>
+            <br>
 
-<!-- MAIN LAYOUT -->
-<main class="community-layout">
+            <a href="https://discord.gg/y42B8k2eAT" target="_blank">
+                <button class="auth-btn">
+                    Join ROI Discord
+                </button>
+            </a>
 
-  <!-- LEFT: THREAD FEED -->
-  <section class="thread-feed">
-
-    <!-- CREATE THREAD (UI ONLY) -->
-    <div class="create-thread">
-      <h3>Create a thread</h3>
-      <input type="text" placeholder="Thread title">
-      <textarea placeholder="What do you want to talk about?"></textarea>
-      <button class="auth-btn">Post</button>
-    </div>
-
-    <!-- THREAD CARD -->
-    <article class="thread-card">
-      <div class="thread-votes">
-        ▲<span>12</span>▼
-      </div>
-
-      <div class="thread-content">
-        <h3>Night signals feel creepy as hell</h3>
-        <p>
-          Especially on foggy routes near Howrah.
-          Anyone else getting chills?
-        </p>
-        <div class="thread-meta">
-          <span>by Shrestangsu</span>
-          <span>• 2 hours ago</span>
-          <span>• 5 comments</span>
+            <p style="margin-top:1rem; font-size:0.9rem; opacity:0.8;">
+                Redirecting you to Discord…
+            </p>
         </div>
-      </div>
-    </article>
-
-    <!-- Another thread -->
-    <article class="thread-card">
-      <div class="thread-votes">
-        ▲<span>7</span>▼
-      </div>
-
-      <div class="thread-content">
-        <h3>Vande Bharat interior accuracy</h3>
-        <p>
-          Will seat spacing and lighting match real-life models?
-        </p>
-        <div class="thread-meta">
-          <span>by RailFan</span>
-          <span>• yesterday</span>
-          <span>• 11 comments</span>
-        </div>
-      </div>
-    </article>
-
-  </section>
-
-  <!-- RIGHT: SIDEBAR -->
-  <aside class="community-sidebar">
-    <div class="sidebar-box">
-      <h4>About</h4>
-      <p>
-        Official discussion hub for the Rails of India simulation.
-      </p>
-    </div>
-
-    <div class="sidebar-box">
-      <h4>Rules</h4>
-      <ul>
-        <li>Be respectful</li>
-        <li>No spam</li>
-        <li>Stay on topic</li>
-      </ul>
-    </div>
-
-    <div class="sidebar-box">
-      <h4>Categories</h4>
-      <span class="tag">General</span>
-      <span class="tag">Routes</span>
-      <span class="tag">Realism</span>
-      <span class="tag">Mods</span>
-      <span class="tag">Bugs</span>
-    </div>
-  </aside>
-
-</main>
-
-<!-- Firebase auth reused later -->
-<script type="module" src="fireauth.js"></script>
+    </section>
 
 </body>
 </html>
