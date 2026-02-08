@@ -1,5 +1,5 @@
 /* =========================== */
-/*       STYLE.CSS UPDATED       */
+/*       STYLE.CSS UPDATED     */
 /* =========================== */
 
 body {
@@ -11,7 +11,7 @@ body {
     background-color: #000;
 }
 
-/* NAVIGATION BAR */
+/* ================= NAVIGATION BAR ================= */
 nav {
     position: absolute;
     top: 0;
@@ -19,7 +19,7 @@ nav {
     background-color: rgba(22, 58, 95, 0.85);
     padding: 0.6rem 0;
     text-align: center;
-    z-index: 10;
+    z-index: 20;
     animation: slideDown 1s ease;
 }
 
@@ -36,7 +36,7 @@ nav a:hover {
     transform: scale(1.1);
 }
 
-/* HERO LANDING SCREEN */
+/* ================= HERO LANDING SCREEN ================= */
 .hero {
     height: 100vh;
     background-image: url("./Images/Howrah_Birdseye.jpg");
@@ -49,16 +49,30 @@ nav a:hover {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    transition: filter 1s ease, background-image 1s ease;
 }
 
+/* DARK OVERLAY FOR READABILITY */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+/* Keep hero content above overlay */
+.hero > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Blur state (if used via JS) */
 .hero.blur {
     filter: blur(8px);
 }
 
 /* Hero title */
 .hero-title {
-    position: relative;
     color: white;
     font-size: 4rem;
     font-weight: 700;
@@ -66,39 +80,51 @@ nav a:hover {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 2s ease forwards 0.5s;
+
+    /* Text clarity boost */
+    text-shadow:
+        0 3px 10px rgba(0,0,0,0.85),
+        0 0 25px rgba(0,0,0,0.6);
 }
 
-/* HERO SUBTITLE (optional) */
+/* Hero subtitle */
 .hero-subtitle {
-    position: relative;
     color: #f0f0f0;
     font-size: 1.5rem;
     margin-top: 1rem;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 2s ease forwards 1.2s;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,0.8);
 }
 
-/* PROJECT INFO SECTION */
+/* ================= PROJECT INFO SECTION ================= */
 .project-info {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
-    /* Fixed position effect for scroll */
-    background-image: url("./Images/VandeBharat.jpg"); /* second image */
+    background-image: url("./Images/VandeBharat.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    /* Initial blur */
-    filter: blur(8px);
-    transition: filter 0.8s ease;
-
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease, filter 0.8s ease;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Dark overlay */
+.project-info::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
 }
 
 .project-info.visible {
@@ -107,12 +133,16 @@ nav a:hover {
 }
 
 .info-content {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.55);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 14px;
     color: #fff;
     max-width: 800px;
     text-align: center;
+    position: relative;
+    z-index: 2;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
 
 /* ================= ANIMATIONS ================= */
@@ -121,17 +151,12 @@ nav a:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeOverlay {
-    from { background-color: rgba(0, 0, 0, 0); }
-    to { background-color: rgba(0, 0, 0, 0.45); }
-}
-
 @keyframes slideDown {
     from { transform: translateY(-50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* ================== 2026-Style Buttons ================== */
+/* ================== 2026-STYLE BUTTONS ================== */
 .auth-btn {
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
     font-size: 1rem;
@@ -139,30 +164,30 @@ nav a:hover {
     margin: 0 0.5rem;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg, #1e3c72, #2a5298); /* sleek gradient */
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-    backdrop-filter: blur(5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
     text-shadow: 0 1px 2px rgba(0,0,0,0.4);
 }
 
 .auth-btn:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.45);
     background: linear-gradient(135deg, #2a5298, #1e3c72);
-    color: #f0d35c; /* subtle glow effect on hover */
+    color: #f0d35c;
 }
 
 .auth-btn:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* Google variant */
 .auth-btn-google {
     background: linear-gradient(135deg, #4285F4, #34A853);
-    color: #fff;
 }
 
 .auth-btn-google:hover {
@@ -170,9 +195,9 @@ nav a:hover {
     color: #fff;
 }
 
+/* Logout variant */
 .auth-btn-logout {
     background: linear-gradient(135deg, #D32F2F, #B71C1C);
-    color: #fff;
 }
 
 .auth-btn-logout:hover {
