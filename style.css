@@ -195,3 +195,32 @@ nav a:hover {
     background: linear-gradient(135deg, #B71C1C, #D32F2F);
     color: #fff;
 }
+
+/* ================= DOWNLOAD BUTTON ================= */
+.down-btn {
+    display: inline-block;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem 1.8rem;
+    margin: 0.6rem 0.6rem 0.6rem 0; /* prevents overlap */
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.down-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
+    color: #f0d35c;
+}
+
+.down-btn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
