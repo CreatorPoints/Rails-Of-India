@@ -1,40 +1,71 @@
-<section class="project-info">
-  <div class="info-content">
-    <h2>Download Rails of India</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rails of India - Download</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="fireauth.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
 
-    <!-- CORE -->
-    <div class="download-section">
-      <h3>Core Game</h3>
-      <a href="link-to-core.roic" class="auth-btn">Download Core</a>
+  <!-- ================= NAVIGATION BAR ================= -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="download.html">Download</a>
+    <a href="community.html">Community</a>
+    <button id="login-btn" class="auth-btn"></button>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Download Rails of India</h1>
+      <p class="hero-subtitle">Start your railway adventure with the game and explore the beauty of the Indian Railways!</p><br>
+      <p><h1>IMPORTANT:<h1><br>
+         Before you click anything, you need to know how to download things, as this is not any other game where you click install and thats it.<br>
+         If, you are first time, then first download the Core. After that download the Minor Patches one by one (if there are no Major Pather). If there is Major patch, then download it, check the numerials on it like eg. <b>"MAP_HWH-NDLS_Route(12-25).roimap"<b> means minor patches 12 to 25 are included there. then if there are further minor pather after that then download em too.
     </div>
+  </section>
 
-    <!-- MINOR PATCHES -->
-    <div class="download-section">
-      <h3>Minor Patches (.roimip)</h3>
-      <ul>
-        <li><a href="link-to-patch1.roimip" class="auth-btn">Station Pack 1</a></li>
-        <li><a href="link-to-patch2.roimip" class="auth-btn">Train Pack A</a></li>
-        <!-- more minor patches -->
-      </ul>
+  <!-- ================= DOWNLOAD SECTION ================= -->
+  <section class="project-info" style="background-image: url('./Images/VandeBharat.jpg');">
+    <div class="info-content">
+      <h2>Game Downloads</h2>
+
+      <!-- CORE GAME -->
+      <div class="download-section">
+        <h3>Game Core</h3>
+        <a href="downloads/RailsOfIndia_Core.roic" class="auth-btn">Download Core</a>
+      </div>
+
+      <!-- MINOR PATCHES -->
+      <div class="download-section">
+        <h3>Minor Patches (.roimip)</h3>
+        <ul>
+          <li><a href="downloads/StationPack1.roimip" class="auth-btn">Station Pack 1</a></li>
+          <li><a href="downloads/TrainPackA.roimip" class="auth-btn">Train Pack A</a></li>
+        </ul>
+      </div>
+
+      <!-- MAJOR PATCHES -->
+      <div class="download-section">
+        <h3>Major Patches (.roimap)</h3>
+        <ul>
+          <li><a href="downloads/ExpansionAlpha.roimap" class="auth-btn">Expansion Pack Alpha</a></li>
+        </ul>
+      </div>
+
+      <!-- GRAND PATCHES -->
+      <div class="download-section">
+        <h3>Grand Patches (.roigp)</h3>
+        <ul>
+          <li><a href="downloads/CompleteIndia.roigp" class="auth-btn">Complete India Map Update</a></li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <!-- MAJOR PATCHES -->
-    <div class="download-section">
-      <h3>Major Patches (.roimap)</h3>
-      <ul>
-        <li><a href="link-to-major1.roimap" class="auth-btn">Expansion Pack Alpha</a></li>
-        <!-- more major patches -->
-      </ul>
-    </div>
-
-    <!-- GRAND PATCHES -->
-    <div class="download-section">
-      <h3>Grand Patches (.roigp)</h3>
-      <ul>
-        <li><a href="link-to-grand1.roigp" class="auth-btn">Complete India Map Update</a></li>
-        <!-- more grand patches -->
-      </ul>
-    </div>
-
-  </div>
-</section>
+</body>
+</html>
