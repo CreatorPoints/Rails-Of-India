@@ -3,38 +3,711 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rails of India</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Rails of India — 1:1 Indian Rail Simulation</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'Playfair Display', serif; }
+        /* ====== NAVBAR ====== */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(5, 10, 15, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link:hover::after { width: 100%; }
+        /* ====== HERO ====== */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('https://images.unsplash.com/photo-1567157577867-05ccb1388e84?w=1920&q=80') center/cover no-repeat;
+            transform: scale(1.1);
+            transition: transform 0.1s linear;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(5,10,15,0.3) 0%,
+                rgba(5,10,15,0.5) 40%,
+                rgba(5,10,15,0.85) 80%,
+                rgba(5,10,15,1) 100%
+            );
+        }
+        .hero-overlay::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(245,158,11,0.08) 0%, transparent 60%);
+        }
+        /* Animated grain texture */
+        .hero::after {
+            content: '';
+            position: absolute; inset: -50%;
+            width: 200%; height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .hero-content { position: relative; z-index: 10; text-align: center; }
+        /* Title animation */
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff 0%, #fbbf24 50%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+            filter: drop-shadow(0 4px 30px rgba(251,191,36,0.15));
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.45);
+            margin-top: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s;
+        }
+        .hero-cta {
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.5s;
+        }
+        @keyframes heroReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            opacity: 0;
+            animation: heroReveal 1s ease forwards 2s;
+        }
+        .scroll-line {
+            width: 1px; height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            margin: 0.75rem auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -60px; left: 0;
+            width: 1px; height: 60px;
+            background: linear-gradient(to bottom, transparent, #fbbf24);
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+        @keyframes scrollDown {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(120px); }
+        }
+        /* ====== BUTTONS ====== */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center; gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #050a0f;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(251,191,36,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 40px rgba(251,191,36,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        .btn-primary:active { transform: translateY(0) scale(0.98); }
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center; gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.3);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .btn-login {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .btn-login:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+        /* ====== SECTIONS ====== */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Glass card */
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        /* Feature icon container */
+        .feature-icon {
+            width: 56px; height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        /* Stats counter */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        /* ====== PARALLAX IMAGE SECTION ====== */
+        .parallax-section {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .parallax-bg {
+            position: absolute; inset: -20%;
+            width: 140%; height: 140%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .parallax-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(5,10,15,0.9) 0%,
+                rgba(5,10,15,0.7) 50%,
+                rgba(5,10,15,0.85) 100%
+            );
+        }
+        /* ====== TRAIN TRACK DIVIDER ====== */
+        .track-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(251,191,36,0.3), transparent);
+            position: relative;
+        }
+        .track-divider::before {
+            content: '🚂';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: trainMove 8s linear infinite;
+        }
+        @keyframes trainMove {
+            0% { left: -5%; }
+            100% { left: 105%; }
+        }
+        /* ====== GLOWING ACCENTS ====== */
+        .glow-amber { box-shadow: 0 0 60px rgba(251,191,36,0.08); }
+        .glow-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #fbbf24;
+            box-shadow: 0 0 12px rgba(251,191,36,0.6);
+        }
+        /* ====== FOOTER ====== */
+        footer a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover { color: #fbbf24; }
+        /* ====== MOBILE MENU ====== */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(5,10,15,0.98);
+            backdrop-filter: blur(30px);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .mobile-menu a:hover { opacity: 1; }
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 300;
+            background: none; border: none; padding: 0.5rem;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px; height: 2px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none !important; }
+            .hamburger { display: flex; }
+        }
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+        /* Selection color */
+        ::selection {
+            background: rgba(251,191,36,0.3);
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="download.html">Download</a>
-    <a href="community.html">Community</a>
-    <a href="mods.html">Mods Repository</a>
-    <a href="contribute.html">Contributions</a>
-
-    <button id="login-btn" class="auth-btn auth-btn-google">Login</button>
-</nav>
-
-<div class="hero">
-    <h1 class="hero-title">Rails of India</h1>
-</div>
-
-<section class="project-info">
-    <div class="info-content">
-        <h2>1:1 Indian Rail Simulation</h2>
-        <p>
-            Real routes. Real stations. Real signals.
-            Starting with locals, scaling to the entire nation.
-        </p>
+    <!-- ====== NAVIGATION ====== -->
+    <nav id="navbar" class="px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 text-decoration-none" style="text-decoration:none">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-sm font-bold text-black shadow-lg shadow-amber-500/20">R</div>
+                <span class="text-white font-bold text-lg tracking-tight">Rails of India</span>
+            </a>
+            <!-- Desktop Nav Links -->
+            <div class="nav-links flex items-center gap-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#community" class="nav-link">Community</a>
+                <a href="#download" class="nav-link">Download</a>
+                <button class="btn-login" id="login-btn">Sign In</button>
+            </div>
+            <!-- Mobile Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#home" onclick="closeMobile()">Home</a>
+        <a href="#about" onclick="closeMobile()">About</a>
+        <a href="#features" onclick="closeMobile()">Features</a>
+        <a href="#community" onclick="closeMobile()">Community</a>
+        <a href="#download" onclick="closeMobile()">Download</a>
+        <button class="btn-login mt-4" onclick="closeMobile()">Sign In</button>
     </div>
-</section>
-
-<!-- Scripts -->
-<script src="script.js"></script>
-<script type="module" src="fireauth.js"></script>
-
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="home">
+        <div class="hero-bg" id="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content px-6">
+            <div class="hero-subtitle">Experience the Journey</div>
+            <h1 class="hero-title">Rails of India</h1>
+            <p class="hero-tagline">Real routes. Real stations. Real signals. The most authentic Indian railway simulation ever built.</p>
+            <div class="hero-cta flex flex-wrap gap-4 justify-center">
+                <a href="#download" class="btn-primary">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    Download Now
+                </a>
+                <a href="#about" class="btn-ghost">
+                    Learn More
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span class="text-xs tracking-[4px] uppercase text-white/30">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+    <!-- ====== TRACK DIVIDER ====== -->
+    <div class="track-divider"></div>
+    <!-- ====== ABOUT / PROJECT INFO ====== -->
+    <section id="about" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <!-- Left Content -->
+                    <div class="flex-1">
+                        <span class="text-amber-500 text-sm font-semibold tracking-[4px] uppercase">The Project</span>
+                        <h2 class="font-display text-4xl md:text-5xl text-white mt-4 mb-6 leading-tight">
+                            1:1 Indian Rail<br>Simulation
+                        </h2>
+                        <p class="text-white/50 text-lg leading-relaxed mb-6">
+                            Starting from the bustling local trains of Mumbai, we're building a hyper-realistic simulation that will eventually cover the <span class="text-amber-400/80">entire Indian Railway network</span> — one of the largest in the world.
+                        </p>
+                        <p class="text-white/40 leading-relaxed mb-8">
+                            Every station, every signal, every curve of the track — modeled with precision. Built on the Stride engine for stunning visuals and authentic physics.
+                        </p>
+                        <div class="flex gap-3">
+                            <div class="glow-dot mt-2"></div>
+                            <p class="text-white/30 text-sm">Currently in active development — contributors welcome</p>
+                        </div>
+                    </div>
+                    <!-- Right - Stats Grid -->
+                    <div class="flex-1 grid grid-cols-2 gap-6 w-full max-w-md">
+                        <div class="glass-card p-6 text-center">
+                            <div class="stat-number" data-target="68000" data-suffix="+">0</div>
+                            <p class="text-white/40 text-sm mt-2">Route Kilometers</p>
+                        </div>
+                        <div class="glass-card p-6 text-center">
+                            <div class="stat-number" data-target="7000" data-suffix="+">0</div>
+                            <p class="text-white/40 text-sm mt-2">Stations Planned</p>
+                        </div>
+                        <div class="glass-card p-6 text-center">
+                            <div class="stat-number" data-target="1" data-suffix=":1">0</div>
+                            <p class="text-white/40 text-sm mt-2">Scale Accuracy</p>
+                        </div>
+                        <div class="glass-card p-6 text-center">
+                            <div class="stat-number" data-target="100" data-suffix="%">0</div>
+                            <p class="text-white/40 text-sm mt-2">Open Source</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== FEATURES ====== -->
+    <section id="features" class="py-32 px-6 relative">
+        <!-- Subtle background glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/[0.03] rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto relative">
+            <div class="section-reveal text-center mb-20">
+                <span class="text-amber-500 text-sm font-semibold tracking-[4px] uppercase">What We Offer</span>
+                <h2 class="font-display text-4xl md:text-5xl text-white mt-4">Built for Realism</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="section-reveal glass-card p-8">
+                    <div class="feature-icon bg-amber-500/10 text-amber-400 mb-5">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3">Real Routes</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Accurate GIS data mapped to in-game terrain. Every curve, bridge, and junction is true to life.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="section-reveal glass-card p-8">
+                    <div class="feature-icon bg-orange-500/10 text-orange-400 mb-5">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3">Authentic Signaling</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Indian railway signaling systems faithfully recreated — semaphore, color light, and automatic block signals.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="section-reveal glass-card p-8">
+                    <div class="feature-icon bg-red-500/10 text-red-400 mb-5">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3">Detailed Stations</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Iconic stations like Howrah, CST Mumbai, and New Delhi modeled with architectural accuracy.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="section-reveal glass-card p-8">
+                    <div class="feature-icon bg-blue-500/10 text-blue-400 mb-5">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3">Multiplayer Ready</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Drive with friends, manage stations together, or control entire railway divisions cooperatively.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="section-reveal glass-card p-8">
+                    <div class="feature-icon bg-green-500/10 text-green-400 mb-5">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3">Mod Support</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Full modding API for custom rolling stock, routes, liveries, and gameplay mechanics.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="section-reveal glass-card p-8">
+                    <div class="feature-icon bg-purple-500/10 text-purple-400 mb-5">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3">Open Source</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Built by the community, for the community. Contribute code, assets, or route data on GitHub.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== PARALLAX SHOWCASE ====== -->
+    <section class="parallax-section">
+        <div class="parallax-bg" id="parallax-2" style="background-image: url('https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=1920&q=80');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="relative z-10 text-center px-6 section-reveal max-w-3xl">
+            <span class="text-amber-500 text-sm font-semibold tracking-[4px] uppercase">The Vision</span>
+            <h2 class="font-display text-4xl md:text-5xl text-white mt-4 mb-6">From Mumbai Locals to<br>Cross-Country Expresses</h2>
+            <p class="text-white/45 text-lg leading-relaxed">We're starting with Mumbai's iconic suburban railway — the lifeline of the city — and expanding outward. Rajdhani, Shatabdi, Vande Bharat, and more.</p>
+        </div>
+    </section>
+    <!-- ====== COMMUNITY ====== -->
+    <section id="community" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-16">
+                <span class="text-amber-500 text-sm font-semibold tracking-[4px] uppercase">Community</span>
+                <h2 class="font-display text-4xl md:text-5xl text-white mt-4">Join the Movement</h2>
+                <p class="text-white/40 mt-4 max-w-lg mx-auto">Connect with fellow rail enthusiasts, developers, and modders building the future of Indian rail simulation.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="section-reveal glass-card p-8 text-center group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-[#5865F2]/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-[#5865F2]/20 transition">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286z"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">Discord</h3>
+                    <p class="text-white/40 text-sm">Chat in real-time, share screenshots, and get dev updates.</p>
+                </div>
+                <div class="section-reveal glass-card p-8 text-center group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mx-auto mb-5 group-hover:bg-white/10 transition">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">GitHub</h3>
+                    <p class="text-white/40 text-sm">Contribute code, report issues, and track development progress.</p>
+                </div>
+                <div class="section-reveal glass-card p-8 text-center group cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-[#FF4500]/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-[#FF4500]/20 transition">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#FF4500"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">Reddit</h3>
+                    <p class="text-white/40 text-sm">Discuss features, share mods, and connect with the community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== DOWNLOAD CTA ====== -->
+    <section id="download" class="py-32 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/[0.03] to-transparent pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto text-center relative section-reveal">
+            <span class="text-amber-500 text-sm font-semibold tracking-[4px] uppercase">Get Started</span>
+            <h2 class="font-display text-4xl md:text-6xl text-white mt-4 mb-6">Ready to Drive?</h2>
+            <p class="text-white/40 text-lg mb-10 max-w-lg mx-auto">Download the latest build and experience Indian railways like never before. Free, open source, forever.</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#" class="btn-primary text-lg px-10 py-4">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    Download for Windows
+                </a>
+                <a href="#" class="btn-ghost text-lg px-10 py-4">
+                    View on GitHub
+                </a>
+            </div>
+            <p class="text-white/20 text-sm mt-6">v0.1 Alpha • Windows 10/11 • ~2.5 GB</p>
+        </div>
+    </section>
+    <!-- ====== FOOTER ====== -->
+    <footer class="border-t border-white/5 py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-sm font-bold text-black">R</div>
+                <span class="text-white/40 text-sm">Rails of India © 2025</span>
+            </div>
+            <div class="flex gap-6 text-sm">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p class="text-white/20 text-xs">Built with ❤️ for Indian Railways</p>
+        </div>
+    </footer>
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+        // === Navbar scroll effect ===
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        // === Mobile menu ===
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMobile() {
+            mobileMenu.classList.remove('open');
+        }
+        // === Subtle hero parallax on scroll ===
+        const heroBg = document.getElementById('hero-bg');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY < window.innerHeight) {
+                heroBg.style.transform = `scale(1.1) translateY(${scrollY * 0.3}px)`;
+            }
+        });
+        // === Scroll-triggered section reveals ===
+        const revealElements = document.querySelectorAll('.section-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Stagger animation for sibling cards
+                    const parent = entry.target.parentElement;
+                    const siblings = parent.querySelectorAll('.section-reveal');
+                    if (siblings.length > 1) {
+                        const idx = Array.from(siblings).indexOf(entry.target);
+                        entry.target.style.transitionDelay = `${idx * 0.1}s`;
+                    }
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+        // === Animated stat counters ===
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    const suffix = el.dataset.suffix || '';
+                    const duration = 2000;
+                    const startTime = performance.now();
+                    function animateCount(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease out cubic
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(eased * target);
+                        if (target >= 1000) {
+                            el.textContent = current.toLocaleString() + suffix;
+                        } else {
+                            el.textContent = current + suffix;
+                        }
+                        if (progress < 1) {
+                            requestAnimationFrame(animateCount);
+                        }
+                    }
+                    requestAnimationFrame(animateCount);
+                    statObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        statNumbers.forEach(el => statObserver.observe(el));
+        // === Parallax for mid-page sections ===
+        const parallaxBgs = document.querySelectorAll('.parallax-bg');
+        window.addEventListener('scroll', () => {
+            parallaxBgs.forEach(bg => {
+                const section = bg.parentElement;
+                const rect = section.getBoundingClientRect();
+                const speed = 0.15;
+                const yOffset = rect.top * speed;
+                bg.style.transform = `translateY(${yOffset}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
