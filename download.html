@@ -7,52 +7,55 @@
   <link rel="stylesheet" href="style.css">
   <script type="module" src="fireauth.js" defer></script>
   <script src="script.js" defer></script>
+  <!-- Google Fonts already in style.css will apply automatically -->
 </head>
 <body>
 
   <!-- ================= NAVIGATION BAR ================= -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="download.html">Download</a>
-    <a href="community.html">Community</a>
-    <button id="login-btn" class="auth-btn"></button>
-  </nav>
-<!-- ================= HERO SECTION ================= -->
-<section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">Download Rails of India</h1>
-    <p class="hero-subtitle">
-      Start your railway adventure with the game and explore the beauty of the Indian Railways!
-    </p>
-
-    <div class="info-content" style="margin-top:2rem; max-width:800px;">
-      <h2 style="color:#f0d35c; font-size:2rem; margin-bottom:1rem;">IMPORTANT:</h2>
-      <p>
-        Before you click anything, you need to know how to download things, as this is not any other game where you click install and that’s it.
-      </p>
-      <ul style="text-align:left; padding-left:1.2rem; margin-top:0.5rem; line-height:1.5;">
-        <li>If you are a first-time player, download the <b>Core</b> first.</li>
-        <li>After that, download the <b>Minor Patches</b> one by one (if there are no Major Patches).</li>
-        <li>If there is a <b>Major Patch</b>, download it and check the numerals like e.g., <b>"MAP_HWH-NDLS_Route(12-25).roimap"</b></li>
-        <li>This means that minor patches 12 to 25 are included. Then, if there are further minor patches after that, download them too.</li>
-      </ul>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Rails of India</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="download.html" class="active">Download</a>
+        <a href="community.html">Community</a>
+      </div>
+      <button id="login-btn" class="auth-btn"></button>
     </div>
-  </div>
-</section>
+  </nav>
 
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero parallax" style="background-image: url('./Images/hero-bg.jpg');">
+    <div class="hero-content container">
+      <h1 class="hero-title">Download Rails of India</h1>
+      <p class="hero-subtitle">
+        Start your railway adventure and explore the beauty of Indian Railways!
+      </p>
+      <div class="info-content">
+        <h2 class="highlight-title">IMPORTANT:</h2>
+        <p>
+          Before clicking anything, understand how downloads work. This isn’t just an “Install” button game.
+        </p>
+        <ul class="download-instructions">
+          <li>First-time players: download the <b>Core</b> game first.</li>
+          <li>Then download <b>Minor Patches</b> one by one (if no Major Patch exists).</li>
+          <li>If there is a <b>Major Patch</b>, check the numerals like <b>"MAP_HWH-NDLS_Route(12-25).roimap"</b></li>
+          <li>This means minor patches 12–25 are included. Download further minor patches afterward if present.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- ================= DOWNLOAD SECTION ================= -->
-  <section class="project-info" style="background-image: url('./Images/VandeBharat.jpg');">
-    <div class="info-content">
-      <h2>Game Downloads</h2>
+  <section class="downloads parallax" style="background-image: url('./Images/VandeBharat.jpg');">
+    <div class="container info-content">
+      <h2 class="section-title">Game Downloads</h2>
 
-      <!-- CORE GAME -->
       <div class="download-section">
         <h3>Game Core</h3>
         <a href="game/openme.txt" class="down-btn">Currently Unavailable</a>
       </div>
 
-      <!-- MINOR PATCHES -->
       <div class="download-section">
         <h3>Minor Patches (.roimip)</h3>
         <ul>
@@ -60,7 +63,6 @@
         </ul>
       </div>
 
-      <!-- MAJOR PATCHES -->
       <div class="download-section">
         <h3>Major Patches (.roimap)</h3>
         <ul>
@@ -68,7 +70,6 @@
         </ul>
       </div>
 
-      <!-- GRAND PATCHES -->
       <div class="download-section">
         <h3>Grand Patches</h3>
         <ul>
