@@ -2,48 +2,198 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rails of India Community</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community — Rails of India</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Auto-redirect after 5 seconds -->
-    <script>
-        setTimeout(() => {
-            window.location.href = "https://discord.gg/y42B8k2eAT";
-        }, 5000);
-    </script>
 </head>
-
 <body>
 
-    <!-- NAV BAR -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="community.html">Community</a>
-    </nav>
+<!-- NAV -->
+<nav id="nav">
+    <a href="index.html" class="logo">RAILS OF INDIA</a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><span id="user-name"></span></li>
+        <li><button class="btn-sm" id="login-btn">Sign In</button></li>
+        <li><button class="btn-sm" id="logout-btn">Log Out</button></li>
+    </ul>
+</nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div style="text-align:center;">
-            <h1 class="hero-title">🚆 Rails of India</h1>
-            <p class="hero-subtitle">
-                Join the official Discord community<br>
-                Routes • Screenshots • Discussions • Updates
-            </p>
+<!-- HERO (short) -->
+<section class="hero hero-short">
+    <div class="hero-bg"></div>
+    <div class="hero-dim"></div>
+    <div class="hero-content">
+        <p class="tag">Join the Community</p>
+        <h1>Get Involved</h1>
+        <p>Connect with drivers, modders, and railway fans across India and beyond.</p>
+    </div>
+</section>
 
-            <br>
-
-            <a href="https://discord.gg/y42B8k2eAT" target="_blank">
-                <button class="auth-btn">
-                    Join ROI Discord
-                </button>
-            </a>
-
-            <p style="margin-top:1rem; font-size:0.9rem; opacity:0.8;">
-                Redirecting you to Discord…
-            </p>
+<!-- DISCORD REDIRECT -->
+<section>
+    <div class="wrap r" style="text-align:center;">
+        <span class="label">Official Server</span>
+        <h2 class="heading">Join Us on Discord</h2>
+        <p style="color:rgba(255,255,255,0.4); margin-top:10px; max-width:480px; margin-left:auto; margin-right:auto;">
+            Our Discord is the heart of the community — get help, share screenshots, discuss routes, and stay updated on development.
+        </p>
+        <div class="hero-btns" style="margin-top:28px;">
+            <a href="https://discord.gg/y42B8k2eAT" target="_blank" class="btn btn-gold">💬 Join Discord</a>
         </div>
-    </section>
+        <p id="redirect-msg" style="color:rgba(255,255,255,0.2); font-size:0.78rem; margin-top:18px;">
+            Auto-redirecting in <span id="countdown">10</span>s…
+        </p>
+    </div>
+</section>
+
+<!-- COMMUNITY PLATFORMS -->
+<section class="showcase">
+    <div class="wrap">
+        <div class="r">
+            <span class="label">Find Us Everywhere</span>
+            <h2 class="heading">Community Platforms</h2>
+        </div>
+
+        <!-- Discord -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">💬</div>
+                <div>
+                    <h3>Discord</h3>
+                    <p>Chat, voice, screenshots, dev updates — the main hub</p>
+                </div>
+            </div>
+            <a href="https://discord.gg/y42B8k2eAT" target="_blank" class="btn btn-ghost">Join Server</a>
+        </div>
+
+        <!-- GitHub -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">🐙</div>
+                <div>
+                    <h3>GitHub</h3>
+                    <p>Source code, issues, pull requests — contribute directly</p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-ghost">View Repo</a>
+        </div>
+
+        <!-- Reddit -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">📣</div>
+                <div>
+                    <h3>Reddit</h3>
+                    <p>Memes, discussions, route suggestions, community polls</p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-ghost">Visit Subreddit</a>
+        </div>
+
+        <!-- YouTube -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">▶️</div>
+                <div>
+                    <h3>YouTube</h3>
+                    <p>Dev logs, gameplay previews, tutorials</p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-ghost">Subscribe</a>
+        </div>
+    </div>
+</section>
+
+<!-- HOW TO CONTRIBUTE -->
+<section>
+    <div class="wrap">
+        <div class="r">
+            <span class="label">Open Source</span>
+            <h2 class="heading">How to Contribute</h2>
+        </div>
+        <div class="instructions">
+            <div class="step r">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Fork the Repository</h3>
+                    <p>Clone the project from GitHub and create your own branch.</p>
+                </div>
+            </div>
+            <div class="step r">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>Pick an Area</h3>
+                    <p>Routes, 3D models, Stride scripting, website, translations — pick what excites you.</p>
+                </div>
+            </div>
+            <div class="step r">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Submit a Pull Request</h3>
+                    <p>Push your changes and open a PR. We review and merge quality contributions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="wrap r">
+        <span class="label">Let's Build Together</span>
+        <h2 class="heading">68,000 km of Track Won't Build Itself</h2>
+        <p>Every contribution matters — from a single station model to an entire route.</p>
+        <div class="hero-btns">
+            <a href="https://discord.gg/y42B8k2eAT" target="_blank" class="btn btn-gold">💬 Join Discord</a>
+            <a href="#" class="btn btn-ghost">View on GitHub</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <span>Rails of India © 2025</span>
+    <div>
+        <a href="#">GitHub</a>
+        <a href="https://discord.gg/y42B8k2eAT">Discord</a>
+        <a href="#">Reddit</a>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
+});
+
+// Scroll reveal
+const ob = new IntersectionObserver(e => {
+    e.forEach(x => {
+        if (x.isIntersecting) { x.target.classList.add('v'); ob.unobserve(x.target); }
+    });
+}, { threshold: .15 });
+document.querySelectorAll('.r').forEach(el => ob.observe(el));
+
+// Countdown redirect to Discord
+let sec = 10;
+const countdownEl = document.getElementById('countdown');
+const timer = setInterval(() => {
+    sec--;
+    countdownEl.textContent = sec;
+    if (sec <= 0) {
+        clearInterval(timer);
+        window.location.href = 'https://discord.gg/y42B8k2eAT';
+    }
+}, 1000);
+</script>
+
+<!-- Firebase auth -->
+<script type="module" src="fireauth.js"></script>
 
 </body>
 </html>
