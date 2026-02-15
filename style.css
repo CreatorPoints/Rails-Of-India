@@ -351,6 +351,124 @@ footer a:hover {
     transform: translateY(0);
 }
 
+/* ================= HERO SHORT (sub-pages) ================= */
+.hero-short {
+    height: 50vh;
+    min-height: 340px;
+}
+
+.hero-short .hero-content h1 {
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+}
+
+/* ================= DOWNLOAD PAGE ================= */
+
+/* Steps */
+.instructions {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.step-num {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.step p {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.step code {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Download Cards */
+.dl-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-top: 14px;
+    transition: background 0.25s;
+}
+
+.dl-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.dl-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.dl-card-header .icon {
+    font-size: 1.5rem;
+}
+
+.dl-card-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.dl-card-header h3 code {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-left: 6px;
+}
+
+.dl-card-header p {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+.btn-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 700px) {
     .nav-links {
@@ -359,5 +477,10 @@ footer a:hover {
 
     .feat-grid {
         grid-template-columns: 1fr;
+    }
+
+    .dl-card {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

@@ -1,83 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rails of India - Download</title>
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="fireauth.js" defer></script>
-  <script src="script.js" defer></script>
-  <!-- Google Fonts already in style.css will apply automatically -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download — Rails of India</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ================= NAVIGATION BAR ================= -->
-  <nav class="nav-bar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">Rails of India</a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="download.html" class="active">Download</a>
-        <a href="community.html">Community</a>
-      </div>
-      <button id="login-btn" class="auth-btn"></button>
+<!-- NAV (same as index.html) -->
+<nav id="nav">
+    <a href="index.html" class="logo">RAILS OF INDIA</a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><span id="user-name"></span></li>
+        <li><button class="btn-sm" id="login-btn">Sign In</button></li>
+        <li><button class="btn-sm" id="logout-btn">Log Out</button></li>
+    </ul>
+</nav>
+
+<!-- HERO (shorter, page-header style) -->
+<section class="hero hero-short">
+    <div class="hero-bg"></div>
+    <div class="hero-dim"></div>
+    <div class="hero-content">
+        <p class="tag">Get the Game</p>
+        <h1>Download</h1>
+        <p>Free. Open source. Forever.</p>
     </div>
-  </nav>
+</section>
 
-  <!-- ================= HERO SECTION ================= -->
-  <section class="hero parallax" style="background-image: url('./Images/hero-bg.jpg');">
-    <div class="hero-content container">
-      <h1 class="hero-title">Download Rails of India</h1>
-      <p class="hero-subtitle">
-        Start your railway adventure and explore the beauty of Indian Railways!
-      </p>
-      <div class="info-content">
-        <h2 class="highlight-title">IMPORTANT:</h2>
-        <p>
-          Before clicking anything, understand how downloads work. This isn’t just an “Install” button game.
-        </p>
-        <ul class="download-instructions">
-          <li>First-time players: download the <b>Core</b> game first.</li>
-          <li>Then download <b>Minor Patches</b> one by one (if no Major Patch exists).</li>
-          <li>If there is a <b>Major Patch</b>, check the numerals like <b>"MAP_HWH-NDLS_Route(12-25).roimap"</b></li>
-          <li>This means minor patches 12–25 are included. Download further minor patches afterward if present.</li>
-        </ul>
-      </div>
+<!-- HOW IT WORKS -->
+<section>
+    <div class="wrap r">
+        <span class="label">Read First</span>
+        <h2 class="heading">How Downloads Work</h2>
+        <div class="instructions">
+            <div class="step r">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Download the Core</h3>
+                    <p>First-time players must download the base game first.</p>
+                </div>
+            </div>
+            <div class="step r">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>Apply Minor Patches</h3>
+                    <p>Download <code>.roimip</code> patches one by one, in order.</p>
+                </div>
+            </div>
+            <div class="step r">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Or Grab a Major Patch</h3>
+                    <p>A <code>.roimap</code> like <code>MAP_HWH-NDLS_Route(12-25)</code> bundles minor patches 12–25. Download further minor patches after it.</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
 
-  <!-- ================= DOWNLOAD SECTION ================= -->
-  <section class="downloads parallax" style="background-image: url('./Images/VandeBharat.jpg');">
-    <div class="container info-content">
-      <h2 class="section-title">Game Downloads</h2>
+<!-- DOWNLOADS -->
+<section class="showcase">
+    <div class="wrap">
+        <div class="r">
+            <span class="label">Downloads</span>
+            <h2 class="heading">Game Files</h2>
+        </div>
 
-      <div class="download-section">
-        <h3>Game Core</h3>
-        <a href="game/openme.txt" class="down-btn">Currently Unavailable</a>
-      </div>
+        <!-- Game Core -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">🎮</div>
+                <div>
+                    <h3>Game Core</h3>
+                    <p>Base game — required for all players</p>
+                </div>
+            </div>
+            <a href="game/openme.txt" class="btn btn-ghost btn-disabled">Currently Unavailable</a>
+        </div>
 
-      <div class="download-section">
-        <h3>Minor Patches (.roimip)</h3>
-        <ul>
-          <li><a href="game/openme.txt" class="down-btn">No Patch Listed Yet...</a></li>
-        </ul>
-      </div>
+        <!-- Minor Patches -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">🔧</div>
+                <div>
+                    <h3>Minor Patches <code>.roimip</code></h3>
+                    <p>Incremental updates — apply in order</p>
+                </div>
+            </div>
+            <a href="game/openme.txt" class="btn btn-ghost btn-disabled">No Patch Listed Yet</a>
+        </div>
 
-      <div class="download-section">
-        <h3>Major Patches (.roimap)</h3>
-        <ul>
-          <li><a href="game/openme.txt" class="down-btn">No Patch Listed Yet...</a></li>
-        </ul>
-      </div>
+        <!-- Major Patches -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">📦</div>
+                <div>
+                    <h3>Major Patches <code>.roimap</code></h3>
+                    <p>Bundled updates — includes multiple minor patches</p>
+                </div>
+            </div>
+            <a href="game/openme.txt" class="btn btn-ghost btn-disabled">No Patch Listed Yet</a>
+        </div>
 
-      <div class="download-section">
-        <h3>Grand Patches</h3>
-        <ul>
-          <li><a href="game/openme.txt" class="down-btn">No Patch Listed Yet...</a></li>
-        </ul>
-      </div>
+        <!-- Grand Patches -->
+        <div class="dl-card r">
+            <div class="dl-card-header">
+                <div class="icon">🚀</div>
+                <div>
+                    <h3>Grand Patches</h3>
+                    <p>Full milestone releases</p>
+                </div>
+            </div>
+            <a href="game/openme.txt" class="btn btn-ghost btn-disabled">No Patch Listed Yet</a>
+        </div>
     </div>
-  </section>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <span>Rails of India © 2025</span>
+    <div>
+        <a href="#">GitHub</a>
+        <a href="#">Discord</a>
+        <a href="#">Reddit</a>
+    </div>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
+});
+
+// Scroll reveal
+const ob = new IntersectionObserver(e => {
+    e.forEach(x => {
+        if (x.isIntersecting) { x.target.classList.add('v'); ob.unobserve(x.target); }
+    });
+}, { threshold: .15 });
+document.querySelectorAll('.r').forEach(el => ob.observe(el));
+</script>
+
+<!-- Firebase auth -->
+<script type="module" src="fireauth.js"></script>
 
 </body>
 </html>
