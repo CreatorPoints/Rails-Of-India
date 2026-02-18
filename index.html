@@ -15,6 +15,7 @@
     <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#donate">Donate</a></li>
         <li><a href="#download">Download</a></li>
         <li><span id="user-name"></span></li>
         <li><button class="btn-sm" id="login-btn">Sign In</button></li>
@@ -22,7 +23,7 @@
     </ul>
 </nav>
 
-<!-- HERO — uses your custom Howrah bird's eye image -->
+<!-- HERO -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-dim"></div>
@@ -64,6 +65,98 @@
     </div>
 </section>
 
+<!-- DONATION -->
+<section class="donation" id="donate">
+    <div class="wrap">
+        <div class="r">
+            <span class="label">Support Us</span>
+            <h2 class="heading">Can You Help Us Deliver the Best Experience?</h2>
+            <p class="donation-subtitle">We currently use a very poor computer — in fact, it's so poor you won't even find it on the market anymore.</p>
+        </div>
+
+        <div class="specs-comparison r">
+            <!-- Current Specs -->
+            <div class="spec-card spec-current">
+                <div class="spec-badge badge-current">😢 Current Setup</div>
+                <ul class="spec-list">
+                    <li>
+                        <span class="spec-label">CPU</span>
+                        <span class="spec-value">Intel® Pentium® G4400</span>
+                        <span class="spec-detail">3M Cache, 3.30 GHz</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">GPU</span>
+                        <span class="spec-value">Intel HD Graphics 510</span>
+                        <span class="spec-detail">Integrated Graphics</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">RAM</span>
+                        <span class="spec-value">8 GB DDR4</span>
+                        <span class="spec-detail">4×2 Dual Channel</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Arrow -->
+            <div class="spec-arrow r">
+                <span>→</span>
+            </div>
+
+            <!-- Goal Specs -->
+            <div class="spec-card spec-goal">
+                <div class="spec-badge badge-goal">🎯 Our Goal</div>
+                <ul class="spec-list">
+                    <li>
+                        <span class="spec-label">CPU</span>
+                        <span class="spec-value">AMD Ryzen 5 5600X</span>
+                        <span class="spec-detail">6 Cores, 12 Threads, 4.6 GHz</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">GPU</span>
+                        <span class="spec-value">Nvidia GeForce RTX 5060 Ti</span>
+                        <span class="spec-detail">Dedicated Graphics</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">RAM</span>
+                        <span class="spec-value">16 GB DDR4</span>
+                        <span class="spec-detail">8×2 Dual Channel</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="donation-progress r">
+            <div class="progress-header">
+                <span class="progress-text">Progress</span>
+                <span class="progress-amount">₹0 / ₹80,000</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Donation Box -->
+        <div class="donation-box r">
+            <h3>Make a Donation</h3>
+            <div class="donation-presets">
+                <button class="donate-preset" data-amount="100">₹100</button>
+                <button class="donate-preset" data-amount="250">₹250</button>
+                <button class="donate-preset" data-amount="500">₹500</button>
+                <button class="donate-preset" data-amount="1000">₹1,000</button>
+                <button class="donate-preset" data-amount="2500">₹2,500</button>
+            </div>
+            <div class="donation-custom">
+                <span class="currency-symbol">₹</span>
+                <input type="number" class="donate-input" placeholder="Custom amount" min="1">
+            </div>
+            <a href="#" class="btn btn-gold donate-btn">❤️ Donate Now</a>
+            <p class="donation-note">Any amount will be happily accepted ❤️</p>
+        </div>
+
+    </div>
+</section>
+
 <!-- DOWNLOAD -->
 <section class="cta" id="download">
     <div class="wrap r">
@@ -98,6 +191,15 @@ const ob=new IntersectionObserver(e=>{
     e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');ob.unobserve(x.target)}})
 },{threshold:.15})
 document.querySelectorAll('.r').forEach(el=>ob.observe(el))
+
+// Donation preset buttons
+document.querySelectorAll('.donate-preset').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.donate-preset').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector('.donate-input').value = btn.dataset.amount;
+    });
+});
 </script>
 
 <!-- Your Firebase auth script -->
