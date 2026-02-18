@@ -156,6 +156,58 @@
 
     </div>
 </section>
+<!-- Donation Box (unchanged HTML) -->
+<div class="donation-box r">
+    <h3>Make a Donation</h3>
+    <div class="donation-presets">
+        <button class="donate-preset" data-amount="100">₹100</button>
+        <button class="donate-preset" data-amount="250">₹250</button>
+        <button class="donate-preset" data-amount="500">₹500</button>
+        <button class="donate-preset" data-amount="1000">₹1,000</button>
+        <button class="donate-preset" data-amount="2500">₹2,500</button>
+    </div>
+    <div class="donation-custom">
+        <span class="currency-symbol">₹</span>
+        <input type="number" class="donate-input" placeholder="Custom amount" min="1">
+    </div>
+    <a href="#" class="btn btn-gold donate-btn">❤️ Donate Now</a>
+    <p class="donation-note">Any amount will be happily accepted ❤️</p>
+</div>
+
+<!-- Script to make the buttons link to Amazon.in gift cards -->
+<script>
+  // Base Amazon.in e-gift card link (generic placeholder)
+  const amazonBaseURL = "https://www.amazon.in/gp/gc/create?ie=UTF8&amount=";
+
+  let selectedAmount = null;
+
+  // Preset buttons
+  document.querySelectorAll('.donate-preset').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedAmount = btn.getAttribute('data-amount');
+      // Highlight the selected button (optional visual feedback)
+      document.querySelectorAll('.donate-preset').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      // Update the custom input with selected amount
+      document.querySelector('.donate-input').value = selectedAmount;
+    });
+  });
+
+  // Donate Now button
+  document.querySelector('.donate-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    const customInput = document.querySelector('.donate-input').value;
+    const amount = customInput && customInput > 0 ? customInput : selectedAmount;
+    if (!amount) {
+      alert("Please select or enter a donation amount!");
+      return;
+    }
+    // Open Amazon.in gift card page with the selected amount
+    const amazonLink = `${amazonBaseURL}${amount}&currency=INR`;
+    window.open(amazonLink, '_blank');
+  });
+</script>
+
 
 <!-- DOWNLOAD -->
 <section class="cta" id="download">
