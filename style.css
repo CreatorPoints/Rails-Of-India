@@ -484,3 +484,345 @@ footer a:hover {
         align-items: flex-start;
     }
 }
+
+/* ================= DONATION SECTION ================= */
+.donation {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.donation .heading {
+    max-width: 650px;
+    margin: 6px auto 0;
+}
+
+.donation-subtitle {
+    color: rgba(255, 255, 255, 0.35);
+    max-width: 520px;
+    margin: 14px auto 0;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Specs Comparison */
+.specs-comparison {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+}
+
+.spec-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: left;
+    transition: background 0.25s, transform 0.25s;
+    position: relative;
+}
+
+.spec-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px);
+}
+
+.spec-current {
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.spec-current:hover {
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+.spec-goal {
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.spec-goal:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+.spec-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.badge-current {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.badge-goal {
+    background: rgba(245, 158, 11, 0.12);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.spec-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.spec-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.spec-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.spec-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.spec-detail {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* Arrow between cards */
+.spec-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spec-arrow span {
+    font-size: 2.2rem;
+    color: rgba(255, 255, 255, 0.15);
+    font-weight: 900;
+    animation: arrowPulse 2s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateX(0);
+    }
+    50% {
+        opacity: 1;
+        color: #f59e0b;
+        transform: translateX(6px);
+    }
+}
+
+/* Progress Bar */
+.donation-progress {
+    max-width: 500px;
+    margin: 40px auto 0;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.progress-text {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.progress-amount {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fbbf24;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+    border-radius: 50px;
+    transition: width 1s ease;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.3);
+}
+
+/* Donation Box */
+.donation-box {
+    max-width: 440px;
+    margin: 36px auto 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 32px 28px;
+}
+
+.donation-box h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.donation-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.donate-preset {
+    padding: 9px 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.donate-preset:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.08);
+}
+
+.donate-preset.active {
+    border-color: #f59e0b;
+    color: #000;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 4px 16px rgba(251, 191, 36, 0.25);
+}
+
+.donation-custom {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.donation-custom:focus-within {
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+.currency-symbol {
+    padding: 12px 0 12px 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.donate-input {
+    flex: 1;
+    padding: 12px 18px 12px 6px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.donate-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 400;
+}
+
+/* Remove number input spinners */
+.donate-input::-webkit-outer-spin-button,
+.donate-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.donate-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.donate-btn {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.donation-note {
+    color: rgba(255, 255, 255, 0.25) !important;
+    font-size: 0.82rem !important;
+    margin-top: 0 !important;
+}
+
+/* ================= DONATION MOBILE ================= */
+@media (max-width: 700px) {
+    .specs-comparison {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .spec-card {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .spec-arrow span {
+        transform: rotate(90deg);
+    }
+
+    @keyframes arrowPulse {
+        0%, 100% {
+            opacity: 0.3;
+            transform: rotate(90deg) translateX(0);
+        }
+        50% {
+            opacity: 1;
+            color: #f59e0b;
+            transform: rotate(90deg) translateX(6px);
+        }
+    }
+
+    .donation-box {
+        padding: 24px 18px;
+    }
+
+    .donate-preset {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+}
