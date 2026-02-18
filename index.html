@@ -136,27 +136,56 @@
             </div>
         </div>
 
-        <!-- Donation Box -->
-        <div class="donation-box r">
-            <h3>Make a Donation</h3>
-            <div class="donation-presets">
-                <button class="donate-preset" data-amount="100">₹100</button>
-                <button class="donate-preset" data-amount="250">₹250</button>
-                <button class="donate-preset" data-amount="500">₹500</button>
-                <button class="donate-preset" data-amount="1000">₹1,000</button>
-                <button class="donate-preset" data-amount="2500">₹2,500</button>
-            </div>
-            <div class="donation-custom">
-                <span class="currency-symbol">₹</span>
-                <input type="number" class="donate-input" placeholder="Custom amount" min="1">
-            </div>
-            <a href="#" class="btn btn-gold donate-btn">❤️ Donate Now</a>
-            <p class="donation-note">Any amount will be happily accepted ❤️ ONLY send donations at "donatephoton@gmail.com", we don't accept links, only E-Mails. Only Amazon.in, no other sites</p>
+        <!-- Donation Instructions -->
+<div class="instructions">
+    <div class="step">
+        <div class="step-num">1</div>
+        <div>
+            <h3>Pick an Amount</h3>
+            <p>Use the preset buttons below or enter a custom amount you want to donate.</p>
         </div>
-
     </div>
-</section>
-<script>
+    <div class="step">
+        <div class="step-num">2</div>
+        <div>
+            <h3>Buy Amazon.in Gift Card</h3>
+            <p>Click the "❤️ Donate Now" button. It will take you to the official Amazon.in gift card page to purchase the gift card for the selected amount.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-num">3</div>
+        <div>
+            <h3>Send the Gift Card</h3>
+            <p>Email the gift card code to <strong>donatephoton@gmail.com</strong>. Make sure to use only Amazon.in. Do not send via links or other websites.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-num">4</div>
+        <div>
+            <h3>Relax & Support Photon Studios</h3>
+            <p>Once we receive and redeem your gift card, the balance will go directly to supporting our project. Your contribution helps improve our hardware and game experience!</p>
+        </div>
+    </div>
+</div>
+
+<!-- Donation Box -->
+<div class="donation-box r">
+    <h3>Make a Donation</h3>
+    <div class="donation-presets">
+        <button class="donate-preset" data-amount="100">₹100</button>
+        <button class="donate-preset" data-amount="250">₹250</button>
+        <button class="donate-preset" data-amount="500">₹500</button>
+        <button class="donate-preset" data-amount="1000">₹1,000</button>
+        <button class="donate-preset" data-amount="2500">₹2,500</button>
+    </div>
+    <div class="donation-custom">
+        <span class="currency-symbol">₹</span>
+        <input type="number" class="donate-input" placeholder="Custom amount" min="1">
+    </div>
+    <a href="#" class="btn btn-gold donate-btn">❤️ Donate Now</a>
+    <p class="donation-note">Any amount will be happily accepted ❤️ ONLY send donations at "donatephoton@gmail.com", we don't accept links, only E-Mails. Only Amazon.in, no other sites</p>
+</div>
+
   const amazonLink = "https://www.amazon.in/Amazon-Grey-mail-Gift-Card/dp/B018TV9HIM?sr=8-1";
   let selectedAmount = null;
 
