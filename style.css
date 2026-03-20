@@ -469,6 +469,11 @@ footer a:hover {
     pointer-events: none;
 }
 
+.btn-enabled {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 700px) {
     .nav-links {
