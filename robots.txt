@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block only sensitive/private areas
+Disallow: /login
+Disallow: /signup
+Disallow: /account
+Disallow: /dashboard
+Disallow: /admin
+
+# Sitemap for better indexing
+Sitemap: https://railsofindia.vercel.app/sitemap.xml
