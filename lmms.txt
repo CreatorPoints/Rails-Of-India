@@ -1,0 +1,26 @@
+# Rails of India LLM Guidelines
+
+> Guidelines for AI and large language models (LLMs) interacting with Rails of India project content.
+
+This file describes how AI models should use, reference, or interact with Rails of India content, tutorials, and code examples. It is designed to guide responsible usage and proper attribution.
+
+## Usage Notes
+
+- AI models should **not generate content** that exposes private or sensitive data.
+- Only use information that is **publicly available** through Rails of India websites, repos, or documentation.
+- Properly **cite the source** if referencing content or tutorials from Rails of India.
+
+## Docs
+
+- [Rails of India official site](https://railsofindia.vercel.app): Main website with project details, updates, and news.
+- [GitHub repository](https://github.com/CreatorPoints/Rails-Of-India): Source code and assets available for public viewing and contributions.
+- [Game documentation](https://railsofindia.vercel.app/docs): Guides, tutorials, and usage examples for developers.
+
+## Examples
+
+- [Train timetable simulation guide](https://railsofindia.vercel.app/docs/timetable): Walkthrough of realistic train schedule handling in the simulation.
+- [KML-to-spline mapping tutorial](https://railsofindia.vercel.app/docs/kml-spline): Step-by-step example for mapping geospatial data into the game engine.
+
+## Optional
+
+- [Unreal 5.7.4 reference](https://docs.unrealengine.com/en-US/index.html): Useful engine reference for understanding base mechanics applied in Rails of India.
