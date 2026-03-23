@@ -498,6 +498,56 @@ footer a:hover {
     margin-top: 4px;
 }
 
+.patch-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.patch-control {
+    display: flex;
+    align-items: center;
+}
+
+.patch-control input,
+.patch-control select {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.patch-control input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.patch-control input:focus,
+.patch-control select:focus {
+    outline: none;
+    border-color: rgba(245, 158, 11, 0.6);
+}
+
+.patch-control select option {
+    color: #0b0d10;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .table-wrap {
     overflow-x: auto;
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -584,6 +634,26 @@ footer a:hover {
     .dl-card {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .downloads-table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .patch-controls {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .patch-control {
+        width: 100%;
+    }
+
+    .patch-control input,
+    .patch-control select {
+        width: 100%;
     }
 }
 

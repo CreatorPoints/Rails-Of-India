@@ -91,6 +91,21 @@
                     <h3>Patch Library</h3>
                     <p>Minor, major, and grand patches pulled from <code>metadata.json</code></p>
                 </div>
+                <div class="patch-controls">
+                    <label class="patch-control">
+                        <span class="visually-hidden">Search patches</span>
+                        <input type="search" id="patch-search" placeholder="Search patches">
+                    </label>
+                    <label class="patch-control">
+                        <span class="visually-hidden">Filter by category</span>
+                        <select id="patch-category">
+                            <option value="All">All Categories</option>
+                            <option value="Minor Patch">Minor Patch</option>
+                            <option value="Major Patch">Major Patch</option>
+                            <option value="Grand Patch">Grand Patch</option>
+                        </select>
+                    </label>
+                </div>
             </div>
             <div class="table-wrap">
                 <table>
@@ -138,12 +153,15 @@ document.querySelectorAll('.r').forEach(el => ob.observe(el));
 
 // Patch table
 const patchTableBody = document.getElementById('patch-table-body');
+const patchSearch = document.getElementById('patch-search');
+const patchCategory = document.getElementById('patch-category');
 const patchCategories = ['Minor Patch', 'Major Patch', 'Grand Patch'];
 const patchExtensions = {
     '.roimip': 'Minor Patch',
     '.roimap': 'Major Patch',
     '.roigp': 'Grand Patch'
 };
+let allPatches = [];
 
 const formatBytes = bytes => {
     if (!Number.isFinite(bytes)) return '-';
@@ -207,6 +225,31 @@ const renderPatchRow = item => {
     `;
 };
 
+const renderPatchTable = patches => {
+    if (!patchTableBody) return;
+    if (!patches.length) {
+        patchTableBody.innerHTML = `
+            <tr>
+                <td colspan="5">No patches match your filters.</td>
+            </tr>
+        `;
+        return;
+    }
+    patchTableBody.innerHTML = patches.map(renderPatchRow).join('');
+};
+
+const applyPatchFilters = () => {
+    const term = (patchSearch?.value || '').trim().toLowerCase();
+    const category = patchCategory?.value || 'All';
+    const filtered = allPatches.filter(item => {
+        const name = (item.name || item.path || '').toLowerCase();
+        const matchesTerm = !term || name.includes(term);
+        const matchesCategory = category === 'All' || item.category === category;
+        return matchesTerm && matchesCategory;
+    });
+    renderPatchTable(filtered);
+};
+
 const loadPatchTable = async () => {
     if (!patchTableBody) return;
     try {
@@ -239,7 +282,8 @@ const loadPatchTable = async () => {
             return nameA.localeCompare(nameB);
         });
 
-        patchTableBody.innerHTML = patches.map(renderPatchRow).join('');
+        allPatches = patches;
+        applyPatchFilters();
     } catch (err) {
         patchTableBody.innerHTML = `
             <tr>
@@ -248,6 +292,9 @@ const loadPatchTable = async () => {
         `;
     }
 };
+
+patchSearch?.addEventListener('input', applyPatchFilters);
+patchCategory?.addEventListener('change', applyPatchFilters);
 
 loadPatchTable();
 </script>
