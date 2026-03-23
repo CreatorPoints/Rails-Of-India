@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-03-23T21:25:00+05:30",
+  "files": [
+    {
+      "name": "Game Core (placeholder)",
+      "path": "game/openme.txt",
+      "category": "Game Core",
+      "sizeBytes": 1172,
+      "updated": "2026-03-20T12:55:08+05:30"
+    },
+    {
+      "name": "test.roimap",
+      "path": "game/Major Patch/test.roimap",
+      "category": "Major Patch",
+      "sizeBytes": 798,
+      "updated": "2026-03-23T21:19:51+05:30"
+    }
+  ]
+}

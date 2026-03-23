@@ -84,44 +84,35 @@
             <a href="game/openme.txt" class="btn-enabled">Currently Unavailable</a>
         </div>
 
-        <!-- Minor Patches -->
-        <div class="dl-card r">
-            <div class="dl-card-header">
-                <div class="icon">🔧</div>
+        <!-- Patch Table -->
+        <div class="downloads-table r">
+            <div class="downloads-table-header">
                 <div>
-                    <h3>Minor Patches <code>.roimip</code></h3>
-                    <p>Incremental updates — apply in order</p>
+                    <h3>Patch Library</h3>
+                    <p>Minor, major, and grand patches pulled from <code>metadata.json</code></p>
                 </div>
             </div>
-            <a href="game/openme.txt" class="btn-enabled">No Patch Listed Yet</a>
-        </div>
-
-        <!-- Major Patches -->
-        <div class="dl-card r">
-            <div class="dl-card-header">
-                <div class="icon">📦</div>
-                <div>
-                    <h3>Major Patches <code>.roimap</code></h3>
-                    <p>Bundled updates — includes multiple minor patches</p>
-                </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patch</th>
+                            <th>Category</th>
+                            <th>Size</th>
+                            <th>Updated</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patch-table-body">
+                        <tr>
+                            <td colspan="5">Loading patches...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <a href="game/openme.txt" class="btn-enabled">No Patch Listed Yet</a>
-        </div>
-
-        <!-- Grand Patches -->
-        <div class="dl-card r">
-            <div class="dl-card-header">
-                <div class="icon">🚀</div>
-                <div>
-                    <h3>Grand Patches</h3>
-                    <p>Full milestone releases</p>
-                </div>
-            </div>
-            <a href="game/openme.txt" class="btn-enabled">No Patch Listed Yet</a>
         </div>
     </div>
 </section>
-
 <!-- FOOTER -->
 <footer>
     <span>Rails of India © 2025</span>
@@ -144,6 +135,121 @@ const ob = new IntersectionObserver(e => {
     });
 }, { threshold: .15 });
 document.querySelectorAll('.r').forEach(el => ob.observe(el));
+
+// Patch table
+const patchTableBody = document.getElementById('patch-table-body');
+const patchCategories = ['Minor Patch', 'Major Patch', 'Grand Patch'];
+const patchExtensions = {
+    '.roimip': 'Minor Patch',
+    '.roimap': 'Major Patch',
+    '.roigp': 'Grand Patch'
+};
+
+const formatBytes = bytes => {
+    if (!Number.isFinite(bytes)) return '-';
+    const units = ['B', 'KB', 'MB', 'GB'];
+    let idx = 0;
+    let value = bytes;
+    while (value >= 1024 && idx < units.length - 1) {
+        value /= 1024;
+        idx += 1;
+    }
+    return `${value.toFixed(value >= 10 || idx === 0 ? 0 : 1)} ${units[idx]}`;
+};
+
+const formatDate = value => {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '-';
+    return new Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit'
+    }).format(date);
+};
+
+const inferCategory = path => {
+    if (!path) return null;
+    const lower = path.toLowerCase();
+    if (lower.includes('minor patch')) return 'Minor Patch';
+    if (lower.includes('major patch')) return 'Major Patch';
+    if (lower.includes('grand patch')) return 'Grand Patch';
+    const extIndex = lower.lastIndexOf('.');
+    if (extIndex === -1) return null;
+    return patchExtensions[lower.slice(extIndex)] || null;
+};
+
+const categoryClass = category => {
+    if (category === 'Minor Patch') return 'cat-minor';
+    if (category === 'Major Patch') return 'cat-major';
+    if (category === 'Grand Patch') return 'cat-grand';
+    return 'cat-other';
+};
+
+const renderPatchRow = item => {
+    const path = item.path || '';
+    const name = item.name || item.displayName || path.split('/').pop() || 'Unknown Patch';
+    const category = item.category || inferCategory(path) || 'Patch';
+    const size = formatBytes(item.sizeBytes);
+    const updated = formatDate(item.updated || item.lastModified || item.modified);
+    const href = path ? encodeURI(path) : '#';
+    const downloadLabel = path ? 'Download' : 'Unavailable';
+    const buttonClass = path ? 'btn btn-ghost' : 'btn btn-ghost btn-disabled';
+    const downloadAttr = path ? ' download' : '';
+
+    return `
+        <tr>
+            <td>${name}</td>
+            <td><span class="category-badge ${categoryClass(category)}">${category}</span></td>
+            <td>${size}</td>
+            <td>${updated}</td>
+            <td><a href="${href}" class="${buttonClass}"${downloadAttr}>${downloadLabel}</a></td>
+        </tr>
+    `;
+};
+
+const loadPatchTable = async () => {
+    if (!patchTableBody) return;
+    try {
+        const res = await fetch('metadata.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load metadata');
+        const data = await res.json();
+        const files = Array.isArray(data) ? data : (data.files || []);
+        const patches = files
+            .map(item => ({
+                ...item,
+                category: item.category || inferCategory(item.path || '')
+            }))
+            .filter(item => patchCategories.includes(item.category));
+
+        if (!patches.length) {
+            patchTableBody.innerHTML = `
+                <tr>
+                    <td colspan="5">No patches listed yet.</td>
+                </tr>
+            `;
+            return;
+        }
+
+        patches.sort((a, b) => {
+            const catA = patchCategories.indexOf(a.category);
+            const catB = patchCategories.indexOf(b.category);
+            if (catA !== catB) return catA - catB;
+            const nameA = (a.name || a.path || '').toLowerCase();
+            const nameB = (b.name || b.path || '').toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+
+        patchTableBody.innerHTML = patches.map(renderPatchRow).join('');
+    } catch (err) {
+        patchTableBody.innerHTML = `
+            <tr>
+                <td colspan="5">Unable to load patches right now.</td>
+            </tr>
+        `;
+    }
+};
+
+loadPatchTable();
 </script>
 
 <!-- Firebase auth -->
@@ -151,3 +257,4 @@ document.querySelectorAll('.r').forEach(el => ob.observe(el));
 
 </body>
 </html>
+

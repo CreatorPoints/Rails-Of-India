@@ -474,6 +474,103 @@ footer a:hover {
     pointer-events: auto;
 }
 
+/* Patch Table */
+.downloads-table {
+    margin-top: 18px;
+    text-align: left;
+}
+
+.downloads-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 10px 0 16px;
+}
+
+.downloads-table-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.downloads-table-header p {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.downloads-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+}
+
+.downloads-table th {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.45);
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.downloads-table td {
+    padding: 14px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+.downloads-table tbody tr:hover td {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.downloads-table .btn {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+}
+
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.cat-minor {
+    background: rgba(245, 158, 11, 0.12);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.cat-major {
+    background: rgba(59, 130, 246, 0.12);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.cat-grand {
+    background: rgba(16, 185, 129, 0.12);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.cat-other {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 700px) {
     .nav-links {
