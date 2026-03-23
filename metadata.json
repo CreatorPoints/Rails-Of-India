@@ -1,21 +1,20 @@
 ﻿{
-    "generatedAt":  "2026-03-23T22:10:11+05:30",
-    "files":  [
-                  {
-                      "name":  "openme.txt",
-                      "path":  "ame\\openme.txt",
-                      "category":  "Game Core",
-                      "version":  "",
-                      "sizeBytes":  1172,
-                      "updated":  "2026-03-20T12:55:08+05:30"
-                  },
-                  {
-                      "name":  "test.roimap",
-                      "path":  "ame\\Major Patch\\test.roimap",
-                      "category":  "Major Patch",
-                      "version":  "",
-                      "sizeBytes":  798,
-                      "updated":  "2026-03-23T21:19:51+05:30"
-                  }
-              ]
+  "generatedAt": "2026-03-23T21:25:00+05:30",
+  "files": [
+    {
+      "name": "Game Core (placeholder)",
+      "path": "game/openme.txt",
+      "category": "Game Core",
+      "sizeBytes": 1172,
+      "updated": "2026-03-20T12:55:08+05:30"
+    },
+    {
+      "name": "test.roimap",
+      "path": "game/Major Patch/test.roimap",
+      "category": "Major Patch",
+      "version": "1",
+      "sizeBytes": 798,
+      "updated": "2026-03-23T21:19:51+05:30"
+    }
+  ]
 }
