@@ -112,6 +112,7 @@
                     <thead>
                         <tr>
                             <th>Patch</th>
+                            <th>Version</th>
                             <th>Category</th>
                             <th>Size</th>
                             <th>Updated</th>
@@ -120,7 +121,7 @@
                     </thead>
                     <tbody id="patch-table-body">
                         <tr>
-                            <td colspan="5">Loading patches...</td>
+                            <td colspan="6">Loading patches...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -217,6 +218,7 @@ const renderPatchRow = item => {
     return `
         <tr>
             <td>${name}</td>
+            <td>${item.version || '-'}</td>
             <td><span class="category-badge ${categoryClass(category)}">${category}</span></td>
             <td>${size}</td>
             <td>${updated}</td>
@@ -230,7 +232,7 @@ const renderPatchTable = patches => {
     if (!patches.length) {
         patchTableBody.innerHTML = `
             <tr>
-                <td colspan="5">No patches match your filters.</td>
+                <td colspan="6">No patches match your filters.</td>
             </tr>
         `;
         return;
@@ -242,8 +244,13 @@ const applyPatchFilters = () => {
     const term = (patchSearch?.value || '').trim().toLowerCase();
     const category = patchCategory?.value || 'All';
     const filtered = allPatches.filter(item => {
-        const name = (item.name || item.path || '').toLowerCase();
-        const matchesTerm = !term || name.includes(term);
+        const searchTarget = [
+            item.name,
+            item.path,
+            item.version,
+            item.category
+        ].filter(Boolean).join(' ').toLowerCase();
+        const matchesTerm = !term || searchTarget.includes(term);
         const matchesCategory = category === 'All' || item.category === category;
         return matchesTerm && matchesCategory;
     });
@@ -267,7 +274,7 @@ const loadPatchTable = async () => {
         if (!patches.length) {
             patchTableBody.innerHTML = `
                 <tr>
-                    <td colspan="5">No patches listed yet.</td>
+                    <td colspan="6">No patches listed yet.</td>
                 </tr>
             `;
             return;
@@ -287,7 +294,7 @@ const loadPatchTable = async () => {
     } catch (err) {
         patchTableBody.innerHTML = `
             <tr>
-                <td colspan="5">Unable to load patches right now.</td>
+                <td colspan="6">Unable to load patches right now.</td>
             </tr>
         `;
     }

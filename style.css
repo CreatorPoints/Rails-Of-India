@@ -558,7 +558,7 @@ footer a:hover {
 .downloads-table table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 560px;
+    min-width: 640px;
 }
 
 .downloads-table th {
