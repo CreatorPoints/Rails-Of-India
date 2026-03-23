@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="../railsofindia.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rails of India Docs</title>
+    <meta name="description" content="Rails of India documentation. Setup guides, patch formats, modding basics, and project references.">
+    <link rel="canonical" href="https://railsofindia.vercel.app/docs/home.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+    <a href="../index.html" class="logo">RAILS OF INDIA</a>
+    <ul class="nav-links">
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#donate">Donate</a></li>
+        <li><a href="../download.html">Download</a></li>
+        <li><a href="../community.html">Community</a></li>
+        <li><a href="home.html">Docs</a></li>
+        <li><span id="user-name"></span></li>
+        <li><button class="btn-sm" id="login-btn">Sign In</button></li>
+        <li><button class="btn-sm" id="logout-btn">Log Out</button></li>
+    </ul>
+</nav>
+
+<!-- DOCS HERO -->
+<section class="docs-hero">
+    <div class="wrap r">
+        <span class="label">Documentation</span>
+        <h1 class="docs-title">Rails of India Docs</h1>
+        <p class="docs-subtitle">A living guide to the sim. Learn the file formats, patch pipeline, and modding workflow before you ship.</p>
+        <div class="docs-meta">
+            <span class="docs-badge">Versioned Guides</span>
+            <span class="docs-badge">Community Friendly</span>
+            <span class="docs-badge">Beginner Ready</span>
+        </div>
+    </div>
+</section>
+
+<!-- DOCS LAYOUT -->
+<section class="docs">
+    <div class="wrap docs-layout">
+        <aside class="docs-sidebar r">
+            <div class="docs-search">
+                <input type="search" placeholder="Search docs (coming soon)">
+            </div>
+            <nav class="docs-nav">
+                <a href="#getting-started">Getting Started</a>
+                <a href="#install">Install & Setup</a>
+                <a href="#structure">Project Structure</a>
+                <a href="#patches">Patch Formats</a>
+                <a href="#modding">Modding Basics</a>
+                <a href="#contribute">Contributing</a>
+                <a href="#faq">FAQ</a>
+                <a href="#support">Support</a>
+            </nav>
+        </aside>
+
+        <article class="docs-content r">
+            <section id="getting-started" class="docs-section">
+                <span class="docs-kicker">Overview</span>
+                <h2>Getting Started</h2>
+                <p>Rails of India is a 1:1 scale train simulation that focuses on accurate routes, signaling, and station detail. These docs are structured to help you move from download to contribution without guesswork.</p>
+                <div class="docs-grid">
+                    <div class="docs-card">
+                        <h3>1. Grab the Core</h3>
+                        <p>Download the base game once. All patches extend this core build.</p>
+                    </div>
+                    <div class="docs-card">
+                        <h3>2. Apply Patches</h3>
+                        <p>Use minor or major patch files to move forward in version.</p>
+                    </div>
+                    <div class="docs-card">
+                        <h3>3. Explore Mods</h3>
+                        <p>Load optional rolling stock, routes, and liveries from the mod system.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="install" class="docs-section">
+                <span class="docs-kicker">Setup</span>
+                <h2>Install & Setup</h2>
+                <div class="callout">
+                    <strong>Placeholder:</strong> Add install steps and supported platforms here. Include system requirements, unzip steps, and a first launch checklist.
+                </div>
+                <pre class="docs-code"><code>1. Download the latest core build
+2. Extract to a clean folder
+3. Launch the game and verify default route loads</code></pre>
+            </section>
+
+            <section id="structure" class="docs-section">
+                <span class="docs-kicker">Reference</span>
+                <h2>Project Structure</h2>
+                <p>This is a typical layout. Replace with the real repo structure when ready.</p>
+                <div class="docs-structure">
+                    <div class="docs-card">
+                        <h3>game/</h3>
+                        <p>Core game binaries, patch bundles, and patch packages.</p>
+                    </div>
+                    <div class="docs-card">
+                        <h3>docs/</h3>
+                        <p>Documentation pages, guides, and contributor notes.</p>
+                    </div>
+                    <div class="docs-card">
+                        <h3>Images/</h3>
+                        <p>Hero art, screenshots, and promo media.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="patches" class="docs-section">
+                <span class="docs-kicker">Formats</span>
+                <h2>Patch Formats</h2>
+                <p>Patches are versioned packages. Use the correct type for your update path.</p>
+                <div class="table-wrap docs-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Extension</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Minor Patch</td>
+                                <td>.roimip</td>
+                                <td>Incremental updates applied in order.</td>
+                            </tr>
+                            <tr>
+                                <td>Major Patch</td>
+                                <td>.roimap</td>
+                                <td>Bundled patch range, replaces multiple minors.</td>
+                            </tr>
+                            <tr>
+                                <td>Grand Patch</td>
+                                <td>.roigp</td>
+                                <td>Milestone release with broader changes.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="modding" class="docs-section">
+                <span class="docs-kicker">Modding</span>
+                <h2>Modding Basics</h2>
+                <p>This section explains how to install mods, add rolling stock, and validate assets. Replace with real workflow details later.</p>
+                <div class="docs-checklist">
+                    <div class="check-item">Confirm mod folder is loaded by the launcher.</div>
+                    <div class="check-item">Validate texture naming conventions.</div>
+                    <div class="check-item">Test on a clean profile before release.</div>
+                </div>
+            </section>
+
+            <section id="contribute" class="docs-section">
+                <span class="docs-kicker">Community</span>
+                <h2>Contributing</h2>
+                <p>We welcome route research, station references, and UI polish. Add contribution rules, code style, and PR flow here.</p>
+                <div class="callout light">
+                    <strong>Tip:</strong> Include a short template for bug reports and feature requests.
+                </div>
+            </section>
+
+            <section id="faq" class="docs-section">
+                <span class="docs-kicker">Help</span>
+                <h2>FAQ</h2>
+                <div class="docs-faq">
+                    <div class="faq-item">
+                        <h3>Where do I find the latest patch?</h3>
+                        <p>Check the download page for the newest patch list. The table is synced from metadata.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do I need every patch?</h3>
+                        <p>Minor patches must be applied in order unless a major patch replaces the range.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Will this run on low-end hardware?</h3>
+                        <p>Performance guidance goes here once benchmarks are published.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="support" class="docs-section">
+                <span class="docs-kicker">Support</span>
+                <h2>Need Help?</h2>
+                <p>Reach out on Discord or open a GitHub issue. Keep logs and screenshots handy for faster help.</p>
+                <div class="docs-actions">
+                    <a href="../community.html" class="btn btn-gold">Join Community</a>
+                    <a href="https://github.com/CreatorPoints/Rails-Of-India" class="btn btn-ghost">GitHub</a>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <span>Rails of India &copy; 2025</span>
+    <div>
+        <a href="https://github.com/CreatorPoints/Rails-Of-India">GitHub</a>
+        <a href="../community.html">Discord</a>
+    </div>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
+});
+
+// Scroll reveal
+const ob = new IntersectionObserver(e => {
+    e.forEach(x => {
+        if (x.isIntersecting) { x.target.classList.add('v'); ob.unobserve(x.target); }
+    });
+}, { threshold: .15 });
+
+document.querySelectorAll('.r').forEach(el => ob.observe(el));
+</script>
+
+<!-- Firebase auth -->
+<script type="module" src="../fireauth.js"></script>
+
+</body>
+</html>

@@ -621,6 +621,211 @@ footer a:hover {
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* ================= DOCS PAGE ================= */
+.docs-hero {
+    padding: 140px 24px 80px;
+    background: radial-gradient(circle at top, rgba(245, 158, 11, 0.15), transparent 55%);
+    text-align: left;
+}
+
+.docs-title {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+.docs-subtitle {
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 12px;
+    max-width: 620px;
+    line-height: 1.7;
+}
+
+.docs-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.docs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.docs-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+}
+
+.docs-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.docs-search input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.docs-search input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.docs-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.docs-nav a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.docs-nav a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.docs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+}
+
+.docs-section h2 {
+    font-size: 1.6rem;
+    margin-top: 8px;
+}
+
+.docs-section h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.docs-section p {
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.docs-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245, 158, 11, 0.9);
+    font-weight: 700;
+}
+
+.docs-grid,
+.docs-structure {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.docs-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.docs-card p {
+    margin-top: 6px;
+}
+
+.docs-table table {
+    min-width: 520px;
+}
+
+.docs-code {
+    margin-top: 16px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.callout {
+    margin-top: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.callout.light {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.docs-checklist {
+    margin-top: 16px;
+    display: grid;
+    gap: 10px;
+}
+
+.check-item {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.docs-faq {
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.faq-item {
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.docs-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 700px) {
     .nav-links {
@@ -654,6 +859,14 @@ footer a:hover {
     .patch-control input,
     .patch-control select {
         width: 100%;
+    }
+
+    .docs-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+        position: static;
     }
 }
 
