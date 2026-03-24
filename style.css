@@ -667,6 +667,10 @@ footer a:hover {
     gap: 32px;
 }
 
+.docs {
+    padding-top: 60px;
+}
+
 .docs-sidebar {
     position: sticky;
     top: 100px;
@@ -717,6 +721,37 @@ footer a:hover {
     gap: 46px;
 }
 
+.docs-sheet {
+    background: rgba(17, 22, 29, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 34px 38px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.docs-sheet-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 26px;
+}
+
+.docs-caption {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.docs-meta-line {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+}
+
 .docs-section h2 {
     font-size: 1.6rem;
     margin-top: 8px;
@@ -731,6 +766,16 @@ footer a:hover {
     color: rgba(255, 255, 255, 0.45);
     line-height: 1.7;
     margin-top: 10px;
+}
+
+.docs-section {
+    padding: 26px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.docs-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .docs-kicker {
@@ -749,6 +794,13 @@ footer a:hover {
     margin-top: 16px;
 }
 
+.docs-split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 16px;
+}
+
 .docs-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -758,6 +810,19 @@ footer a:hover {
 
 .docs-card p {
     margin-top: 6px;
+}
+
+.docs-list,
+.docs-steps {
+    margin-top: 12px;
+    padding-left: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+}
+
+.docs-list li,
+.docs-steps li {
+    margin-bottom: 8px;
 }
 
 .docs-table table {
@@ -787,6 +852,21 @@ footer a:hover {
 }
 
 .callout.light {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.docs-note {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.docs-note.light {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.12);
 }
