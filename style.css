@@ -816,15 +816,15 @@ footer a:hover {
 
 .docs-grid,
 .docs-structure {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 18px;
     margin-top: 16px;
 }
 
 .docs-split {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 18px;
     margin-top: 16px;
 }
