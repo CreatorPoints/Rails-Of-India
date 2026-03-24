@@ -723,6 +723,16 @@ footer a:hover {
     color: rgba(255, 255, 255, 0.35);
 }
 
+.docs-search-status {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.docs-search-status[data-empty="false"] {
+    color: rgba(245, 158, 11, 0.9);
+}
+
 .docs-nav {
     display: flex;
     flex-direction: column;
@@ -804,6 +814,10 @@ footer a:hover {
 .docs-section:last-child {
     border-bottom: none;
     padding-bottom: 0;
+}
+
+.docs-hidden {
+    display: none;
 }
 
 .docs-kicker {

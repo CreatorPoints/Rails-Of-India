@@ -47,7 +47,8 @@
     <div class="wrap docs-layout">
         <aside class="docs-sidebar r">
             <div class="docs-search">
-                <input type="search" placeholder="Search docs (coming soon)">
+                <input type="search" id="docs-search" placeholder="Search docs">
+                <p id="docs-search-status" class="docs-search-status">Type to filter sections.</p>
             </div>
             <nav class="docs-nav">
                 <a href="#getting-started">Getting Started</a>
@@ -279,6 +280,7 @@ const ob = new IntersectionObserver(e => {
 document.querySelectorAll('.r').forEach(el => ob.observe(el));
 </script>
 
+<script src="search.js"></script>
 <!-- Firebase auth -->
 <script type="module" src="../fireauth.js"></script>
 
