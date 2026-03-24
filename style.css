@@ -733,6 +733,14 @@ footer a:hover {
     color: rgba(245, 158, 11, 0.9);
 }
 
+.docs-search-inline {
+    margin-top: 24px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
 .docs-nav {
     display: flex;
     flex-direction: column;
